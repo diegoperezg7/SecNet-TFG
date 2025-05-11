@@ -1,0 +1,25 @@
+# Local rules for Suricata
+# These are custom rules for the MVP
+
+# SSH brute force detection
+alert tcp any any -> $HOME_NET 22 (msg:"ET POLICY SSH Brute Force Attempt"; flow:to_server; threshold: type threshold, track by_src, count 5, seconds 60; classtype:attempted-admin; sid:1000001; rev:1;)
+
+# Suspicious outbound connections to known malware domains
+alert dns $HOME_NET any -> any any (msg:"ET MALWARE Suspicious DNS Request for Known Malware C2 Domain"; dns.query; content:"malware"; nocase; content:".c2c"; nocase; classtype:trojan-activity; sid:1000002; rev:1;)
+
+# Web application attacks
+alert http any any -> $HOME_NET any (msg:"ET WEB_SERVER PHP Remote File Inclusion Attempt"; flow:to_server,established; http.uri; content:".php?"; nocase; content:"=http"; nocase; classtype:web-application-attack; sid:1000003; rev:1;)
+
+# SQL injection attempts
+alert http any any -> $HOME_NET any (msg:"ET WEB_SERVER SQL Injection Attempt"; flow:to_server,established; http.uri; content:"'"; pcre:"/(\%27)|(\')|(\-\-)|(%23)|(#)/i"; classtype:web-application-attack; sid:1000004; rev:1;)
+
+# Suspicious file downloads
+alert http any any -> $HOME_NET any (msg:"ET MALWARE Suspicious EXE Download"; flow:to_server,established; http.uri; content:".exe"; nocase; classtype:trojan-activity; sid:1000005; rev:1;)
+
+# Basic rules for testing
+alert icmp any any -> $HOME_NET any (msg:"ICMP Ping"; sid:1000006; rev:1;)
+alert tcp any any -> $HOME_NET 80 (msg:"HTTP Traffic"; sid:1000007; rev:1;)
+alert tcp any any -> $HOME_NET 443 (msg:"HTTPS Traffic"; sid:1000008; rev:1;)
+
+# Potential port scan detection
+alert tcp any any -> $HOME_NET any (msg:"Potential Port Scan"; flags:S; threshold:type threshold, track by_src, count 5, seconds 60; sid:1000009; rev:1;)
