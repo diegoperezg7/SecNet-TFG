@@ -1025,3 +1025,387 @@
 [1 - Suricata-Main] 2025-05-11 09:50:41 Info: detect: 9 signatures processed. 3 are IP-only rules, 0 are inspecting packet payload, 4 inspect application layer, 0 are decoder event only
 [1 - Suricata-Main] 2025-05-11 09:50:41 Info: runmodes: eth0: creating 4 threads
 [1 - Suricata-Main] 2025-05-11 09:50:42 Notice: threads: Threads created -> W: 4 FM: 1 FR: 1   Engine started.
+[1 - Suricata-Main] 2025-05-11 10:11:06 Notice: suricata: Signal Received.  Stopping engine.
+[1 - Suricata-Main] 2025-05-11 10:11:06 Info: suricata: time elapsed 1225.235s
+[1 - Suricata-Main] 2025-05-11 10:11:07 Notice: device: eth0: packets: 24, drops: 0 (0.00%), invalid chksum: 0
+[1 - Suricata-Main] 2025-05-11 10:11:09 Notice: suricata: This is Suricata version 7.0.8 RELEASE running in SYSTEM mode
+[1 - Suricata-Main] 2025-05-11 10:11:09 Info: cpu: CPUs/cores online: 4
+[1 - Suricata-Main] 2025-05-11 10:11:09 Info: suricata: Setting engine mode to IDS mode by default
+[1 - Suricata-Main] 2025-05-11 10:11:09 Info: ioctl: eth0: MTU 1500
+[1 - Suricata-Main] 2025-05-11 10:11:09 Info: suricata: No 'host-mode': suricata is in IDS mode, using default setting 'sniffer-only'
+[1 - Suricata-Main] 2025-05-11 10:11:09 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[1 - Suricata-Main] 2025-05-11 10:11:09 Warning: counters: stats are enabled but no loggers are active
+[1 - Suricata-Main] 2025-05-11 10:11:09 Info: detect: 1 rule files processed. 9 rules successfully loaded, 0 rules failed, 0
+[1 - Suricata-Main] 2025-05-11 10:11:09 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[1 - Suricata-Main] 2025-05-11 10:11:09 Info: detect: 9 signatures processed. 3 are IP-only rules, 0 are inspecting packet payload, 4 inspect application layer, 0 are decoder event only
+[1 - Suricata-Main] 2025-05-11 10:11:09 Info: runmodes: eth0: creating 4 threads
+[1 - Suricata-Main] 2025-05-11 10:11:10 Notice: threads: Threads created -> W: 4 FM: 1 FR: 1   Engine started.
+[1 - Suricata-Main] 2025-05-11 10:12:45 Notice: suricata: Signal Received.  Stopping engine.
+[1 - Suricata-Main] 2025-05-11 10:12:45 Info: suricata: time elapsed 96.171s
+[1 - Suricata-Main] 2025-05-11 10:12:46 Notice: device: eth0: packets: 9, drops: 0 (0.00%), invalid chksum: 0
+[1 - Suricata-Main] 2025-05-11 10:20:21 Notice: suricata: This is Suricata version 7.0.8 RELEASE running in SYSTEM mode
+[1 - Suricata-Main] 2025-05-11 10:20:21 Info: cpu: CPUs/cores online: 4
+[1 - Suricata-Main] 2025-05-11 10:20:22 Info: suricata: Setting engine mode to IDS mode by default
+[1 - Suricata-Main] 2025-05-11 10:20:22 Info: ioctl: eth0: MTU 1500
+[1 - Suricata-Main] 2025-05-11 10:20:22 Info: suricata: No 'host-mode': suricata is in IDS mode, using default setting 'sniffer-only'
+[1 - Suricata-Main] 2025-05-11 10:20:22 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[1 - Suricata-Main] 2025-05-11 10:20:22 Warning: counters: stats are enabled but no loggers are active
+[1 - Suricata-Main] 2025-05-11 10:20:22 Info: detect: 1 rule files processed. 9 rules successfully loaded, 0 rules failed, 0
+[1 - Suricata-Main] 2025-05-11 10:20:22 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[1 - Suricata-Main] 2025-05-11 10:20:22 Info: detect: 9 signatures processed. 3 are IP-only rules, 0 are inspecting packet payload, 4 inspect application layer, 0 are decoder event only
+[1 - Suricata-Main] 2025-05-11 10:20:22 Info: runmodes: eth0: creating 4 threads
+[1 - Suricata-Main] 2025-05-11 10:20:22 Notice: threads: Threads created -> W: 4 FM: 1 FR: 1   Engine started.
+[1 - Suricata-Main] 2025-05-11 10:22:28 Notice: suricata: Signal Received.  Stopping engine.
+[1 - Suricata-Main] 2025-05-11 10:22:28 Info: suricata: time elapsed 126.028s
+[1 - Suricata-Main] 2025-05-11 10:22:29 Notice: device: eth0: packets: 11, drops: 0 (0.00%), invalid chksum: 0
+[1 - Suricata-Main] 2025-05-11 10:22:32 Notice: suricata: This is Suricata version 7.0.8 RELEASE running in SYSTEM mode
+[1 - Suricata-Main] 2025-05-11 10:22:32 Info: cpu: CPUs/cores online: 4
+[1 - Suricata-Main] 2025-05-11 10:22:32 Info: suricata: Setting engine mode to IDS mode by default
+[1 - Suricata-Main] 2025-05-11 10:22:32 Info: ioctl: eth0: MTU 1500
+[1 - Suricata-Main] 2025-05-11 10:22:32 Info: suricata: No 'host-mode': suricata is in IDS mode, using default setting 'sniffer-only'
+[1 - Suricata-Main] 2025-05-11 10:22:32 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[1 - Suricata-Main] 2025-05-11 10:22:32 Warning: counters: stats are enabled but no loggers are active
+[1 - Suricata-Main] 2025-05-11 10:22:32 Info: detect: 1 rule files processed. 9 rules successfully loaded, 0 rules failed, 0
+[1 - Suricata-Main] 2025-05-11 10:22:32 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[1 - Suricata-Main] 2025-05-11 10:22:32 Info: detect: 9 signatures processed. 3 are IP-only rules, 0 are inspecting packet payload, 4 inspect application layer, 0 are decoder event only
+[1 - Suricata-Main] 2025-05-11 10:22:32 Info: runmodes: eth0: creating 4 threads
+[1 - Suricata-Main] 2025-05-11 10:22:33 Notice: threads: Threads created -> W: 4 FM: 1 FR: 1   Engine started.
+[1 - Suricata-Main] 2025-05-16 18:09:36 Notice: suricata: This is Suricata version 7.0.8 RELEASE running in SYSTEM mode
+[1 - Suricata-Main] 2025-05-16 18:09:36 Info: cpu: CPUs/cores online: 4
+[1 - Suricata-Main] 2025-05-16 18:09:36 Info: suricata: Setting engine mode to IDS mode by default
+[1 - Suricata-Main] 2025-05-16 18:09:36 Info: ioctl: eth0: MTU 1500
+[1 - Suricata-Main] 2025-05-16 18:09:36 Info: suricata: No 'host-mode': suricata is in IDS mode, using default setting 'sniffer-only'
+[1 - Suricata-Main] 2025-05-16 18:09:36 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[1 - Suricata-Main] 2025-05-16 18:09:36 Warning: counters: stats are enabled but no loggers are active
+[1 - Suricata-Main] 2025-05-16 18:09:36 Info: detect: 1 rule files processed. 9 rules successfully loaded, 0 rules failed, 0
+[1 - Suricata-Main] 2025-05-16 18:09:36 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[1 - Suricata-Main] 2025-05-16 18:09:36 Info: detect: 9 signatures processed. 3 are IP-only rules, 0 are inspecting packet payload, 4 inspect application layer, 0 are decoder event only
+[1 - Suricata-Main] 2025-05-16 18:09:36 Info: runmodes: eth0: creating 4 threads
+[1 - Suricata-Main] 2025-05-16 18:09:37 Notice: threads: Threads created -> W: 4 FM: 1 FR: 1   Engine started.
+[1 - Suricata-Main] 2025-05-16 18:26:19 Notice: suricata: This is Suricata version 7.0.8 RELEASE running in SYSTEM mode
+[1 - Suricata-Main] 2025-05-16 18:26:19 Info: cpu: CPUs/cores online: 4
+[1 - Suricata-Main] 2025-05-16 18:26:19 Info: suricata: Setting engine mode to IDS mode by default
+[1 - Suricata-Main] 2025-05-16 18:26:19 Info: ioctl: eth0: MTU 1500
+[1 - Suricata-Main] 2025-05-16 18:26:19 Info: suricata: No 'host-mode': suricata is in IDS mode, using default setting 'sniffer-only'
+[1 - Suricata-Main] 2025-05-16 18:26:19 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[1 - Suricata-Main] 2025-05-16 18:26:19 Warning: counters: stats are enabled but no loggers are active
+[1 - Suricata-Main] 2025-05-16 18:26:19 Info: detect: 1 rule files processed. 9 rules successfully loaded, 0 rules failed, 0
+[1 - Suricata-Main] 2025-05-16 18:26:19 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[1 - Suricata-Main] 2025-05-16 18:26:19 Info: detect: 9 signatures processed. 3 are IP-only rules, 0 are inspecting packet payload, 4 inspect application layer, 0 are decoder event only
+[1 - Suricata-Main] 2025-05-16 18:26:19 Info: runmodes: eth0: creating 4 threads
+[1 - Suricata-Main] 2025-05-16 18:26:20 Notice: threads: Threads created -> W: 4 FM: 1 FR: 1   Engine started.
+[1 - Suricata-Main] 2025-05-17 17:51:42 Notice: suricata: This is Suricata version 7.0.8 RELEASE running in SYSTEM mode
+[1 - Suricata-Main] 2025-05-17 17:51:42 Info: cpu: CPUs/cores online: 4
+[1 - Suricata-Main] 2025-05-17 17:51:42 Info: suricata: Setting engine mode to IDS mode by default
+[1 - Suricata-Main] 2025-05-17 17:51:43 Info: ioctl: eth0: MTU 1500
+[1 - Suricata-Main] 2025-05-17 17:51:43 Info: suricata: No 'host-mode': suricata is in IDS mode, using default setting 'sniffer-only'
+[1 - Suricata-Main] 2025-05-17 17:51:43 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[1 - Suricata-Main] 2025-05-17 17:51:43 Warning: counters: stats are enabled but no loggers are active
+[1 - Suricata-Main] 2025-05-17 17:51:43 Info: detect: 1 rule files processed. 9 rules successfully loaded, 0 rules failed, 0
+[1 - Suricata-Main] 2025-05-17 17:51:43 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[1 - Suricata-Main] 2025-05-17 17:51:43 Info: detect: 9 signatures processed. 3 are IP-only rules, 0 are inspecting packet payload, 4 inspect application layer, 0 are decoder event only
+[1 - Suricata-Main] 2025-05-17 17:51:43 Info: runmodes: eth0: creating 4 threads
+[1 - Suricata-Main] 2025-05-17 17:51:43 Notice: threads: Threads created -> W: 4 FM: 1 FR: 1   Engine started.
+[1 - Suricata-Main] 2025-05-20 07:59:59 Notice: suricata: This is Suricata version 7.0.8 RELEASE running in SYSTEM mode
+[1 - Suricata-Main] 2025-05-20 07:59:59 Info: cpu: CPUs/cores online: 4
+[1 - Suricata-Main] 2025-05-20 07:59:59 Info: suricata: Setting engine mode to IDS mode by default
+[1 - Suricata-Main] 2025-05-20 07:59:59 Info: ioctl: eth0: MTU 1500
+[1 - Suricata-Main] 2025-05-20 07:59:59 Info: suricata: No 'host-mode': suricata is in IDS mode, using default setting 'sniffer-only'
+[1 - Suricata-Main] 2025-05-20 07:59:59 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[1 - Suricata-Main] 2025-05-20 07:59:59 Warning: counters: stats are enabled but no loggers are active
+[1 - Suricata-Main] 2025-05-20 07:59:59 Error: detect-parse: rule 1000014 setup buffer dns_query but didn't add matches to it
+[1 - Suricata-Main] 2025-05-20 07:59:59 Error: detect: error parsing signature "alert dns $HOME_NET any -> any any (msg:"ET MALWARE High DNS Query Volume"; dns.query; threshold:type threshold, track by_src, count 50, seconds 60; classtype:trojan-activity; sid:1000014; rev:1;)" from file /etc/suricata/rules/local.rules at line 14
+[1 - Suricata-Main] 2025-05-20 07:59:59 Error: detect-parse: unknown rule keyword 'tls.cipher_suite'.
+[1 - Suricata-Main] 2025-05-20 07:59:59 Error: detect: error parsing signature "alert tls any any -> $HOME_NET any (msg:"ET TLS SSL/TLS Cipher Suite Downgrade Attempt"; tls.cipher_suite:0x0000; classtype:attempted-admin; sid:1000026; rev:1;)" from file /etc/suricata/rules/local.rules at line 44
+[1 - Suricata-Main] 2025-05-20 07:59:59 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 07:59:59 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Enumeration Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; classtype:attempted-admin; sid:1000038; rev:1;)" from file /etc/suricata/rules/local.rules at line 70
+[1 - Suricata-Main] 2025-05-20 07:59:59 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 07:59:59 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Null Session Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:4; classtype:attempted-admin; sid:1000039; rev:1;)" from file /etc/suricata/rules/local.rules at line 73
+[1 - Suricata-Main] 2025-05-20 07:59:59 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 07:59:59 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB File Access Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:8; classtype:attempted-admin; sid:1000041; rev:1;)" from file /etc/suricata/rules/local.rules at line 79
+[1 - Suricata-Main] 2025-05-20 07:59:59 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 07:59:59 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Directory Listing Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:12; classtype:attempted-admin; sid:1000042; rev:1;)" from file /etc/suricata/rules/local.rules at line 82
+[1 - Suricata-Main] 2025-05-20 07:59:59 Info: detect: 1 rule files processed. 30 rules successfully loaded, 6 rules failed, 0
+[1 - Suricata-Main] 2025-05-20 07:59:59 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[1 - Suricata-Main] 2025-05-20 07:59:59 Info: detect: 30 signatures processed. 4 are IP-only rules, 8 are inspecting packet payload, 11 inspect application layer, 0 are decoder event only
+[1 - Suricata-Main] 2025-05-20 07:59:59 Info: runmodes: eth0: creating 4 threads
+[1 - Suricata-Main] 2025-05-20 08:00:00 Notice: threads: Threads created -> W: 4 FM: 1 FR: 1   Engine started.
+[1 - Suricata-Main] 2025-05-20 09:48:47 Notice: suricata: This is Suricata version 7.0.8 RELEASE running in SYSTEM mode
+[1 - Suricata-Main] 2025-05-20 09:48:47 Info: cpu: CPUs/cores online: 4
+[1 - Suricata-Main] 2025-05-20 09:48:47 Info: suricata: Setting engine mode to IDS mode by default
+[1 - Suricata-Main] 2025-05-20 09:48:48 Info: ioctl: eth0: MTU 1500
+[1 - Suricata-Main] 2025-05-20 09:48:48 Info: suricata: No 'host-mode': suricata is in IDS mode, using default setting 'sniffer-only'
+[1 - Suricata-Main] 2025-05-20 09:48:48 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[1 - Suricata-Main] 2025-05-20 09:48:48 Warning: counters: stats are enabled but no loggers are active
+[1 - Suricata-Main] 2025-05-20 09:48:48 Error: detect-parse: rule 1000014 setup buffer dns_query but didn't add matches to it
+[1 - Suricata-Main] 2025-05-20 09:48:48 Error: detect: error parsing signature "alert dns $HOME_NET any -> any any (msg:"ET MALWARE High DNS Query Volume"; dns.query; threshold:type threshold, track by_src, count 50, seconds 60; classtype:trojan-activity; sid:1000014; rev:1;)" from file /etc/suricata/rules/local.rules at line 14
+[1 - Suricata-Main] 2025-05-20 09:48:48 Error: detect-parse: unknown rule keyword 'tls.cipher_suite'.
+[1 - Suricata-Main] 2025-05-20 09:48:48 Error: detect: error parsing signature "alert tls any any -> $HOME_NET any (msg:"ET TLS SSL/TLS Cipher Suite Downgrade Attempt"; tls.cipher_suite:0x0000; classtype:attempted-admin; sid:1000026; rev:1;)" from file /etc/suricata/rules/local.rules at line 44
+[1 - Suricata-Main] 2025-05-20 09:48:48 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 09:48:48 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Enumeration Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; classtype:attempted-admin; sid:1000038; rev:1;)" from file /etc/suricata/rules/local.rules at line 70
+[1 - Suricata-Main] 2025-05-20 09:48:48 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 09:48:48 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Null Session Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:4; classtype:attempted-admin; sid:1000039; rev:1;)" from file /etc/suricata/rules/local.rules at line 73
+[1 - Suricata-Main] 2025-05-20 09:48:48 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 09:48:48 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB File Access Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:8; classtype:attempted-admin; sid:1000041; rev:1;)" from file /etc/suricata/rules/local.rules at line 79
+[1 - Suricata-Main] 2025-05-20 09:48:48 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 09:48:48 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Directory Listing Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:12; classtype:attempted-admin; sid:1000042; rev:1;)" from file /etc/suricata/rules/local.rules at line 82
+[1 - Suricata-Main] 2025-05-20 09:48:48 Info: detect: 1 rule files processed. 30 rules successfully loaded, 6 rules failed, 0
+[1 - Suricata-Main] 2025-05-20 09:48:48 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[1 - Suricata-Main] 2025-05-20 09:48:48 Info: detect: 30 signatures processed. 4 are IP-only rules, 8 are inspecting packet payload, 11 inspect application layer, 0 are decoder event only
+[1 - Suricata-Main] 2025-05-20 09:48:49 Info: runmodes: eth0: creating 4 threads
+[1 - Suricata-Main] 2025-05-20 09:48:49 Notice: threads: Threads created -> W: 4 FM: 1 FR: 1   Engine started.
+[1 - Suricata-Main] 2025-05-20 10:35:09 Notice: suricata: This is Suricata version 7.0.8 RELEASE running in SYSTEM mode
+[1 - Suricata-Main] 2025-05-20 10:35:09 Info: cpu: CPUs/cores online: 4
+[1 - Suricata-Main] 2025-05-20 10:35:09 Info: suricata: Setting engine mode to IDS mode by default
+[1 - Suricata-Main] 2025-05-20 10:35:09 Info: ioctl: eth0: MTU 1500
+[1 - Suricata-Main] 2025-05-20 10:35:09 Info: suricata: No 'host-mode': suricata is in IDS mode, using default setting 'sniffer-only'
+[1 - Suricata-Main] 2025-05-20 10:35:09 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[1 - Suricata-Main] 2025-05-20 10:35:09 Warning: counters: stats are enabled but no loggers are active
+[1 - Suricata-Main] 2025-05-20 10:35:09 Error: detect-parse: rule 1000014 setup buffer dns_query but didn't add matches to it
+[1 - Suricata-Main] 2025-05-20 10:35:09 Error: detect: error parsing signature "alert dns $HOME_NET any -> any any (msg:"ET MALWARE High DNS Query Volume"; dns.query; threshold:type threshold, track by_src, count 50, seconds 60; classtype:trojan-activity; sid:1000014; rev:1;)" from file /etc/suricata/rules/local.rules at line 14
+[1 - Suricata-Main] 2025-05-20 10:35:09 Error: detect-parse: unknown rule keyword 'tls.cipher_suite'.
+[1 - Suricata-Main] 2025-05-20 10:35:09 Error: detect: error parsing signature "alert tls any any -> $HOME_NET any (msg:"ET TLS SSL/TLS Cipher Suite Downgrade Attempt"; tls.cipher_suite:0x0000; classtype:attempted-admin; sid:1000026; rev:1;)" from file /etc/suricata/rules/local.rules at line 44
+[1 - Suricata-Main] 2025-05-20 10:35:09 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 10:35:09 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Enumeration Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; classtype:attempted-admin; sid:1000038; rev:1;)" from file /etc/suricata/rules/local.rules at line 70
+[1 - Suricata-Main] 2025-05-20 10:35:09 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 10:35:09 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Null Session Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:4; classtype:attempted-admin; sid:1000039; rev:1;)" from file /etc/suricata/rules/local.rules at line 73
+[1 - Suricata-Main] 2025-05-20 10:35:09 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 10:35:09 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB File Access Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:8; classtype:attempted-admin; sid:1000041; rev:1;)" from file /etc/suricata/rules/local.rules at line 79
+[1 - Suricata-Main] 2025-05-20 10:35:09 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 10:35:09 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Directory Listing Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:12; classtype:attempted-admin; sid:1000042; rev:1;)" from file /etc/suricata/rules/local.rules at line 82
+[1 - Suricata-Main] 2025-05-20 10:35:09 Info: detect: 1 rule files processed. 31 rules successfully loaded, 6 rules failed, 0
+[1 - Suricata-Main] 2025-05-20 10:35:09 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[1 - Suricata-Main] 2025-05-20 10:35:09 Info: detect: 31 signatures processed. 4 are IP-only rules, 8 are inspecting packet payload, 11 inspect application layer, 0 are decoder event only
+[1 - Suricata-Main] 2025-05-20 10:35:09 Info: runmodes: eth0: creating 4 threads
+[1 - Suricata-Main] 2025-05-20 10:35:09 Notice: threads: Threads created -> W: 4 FM: 1 FR: 1   Engine started.
+[1 - Suricata-Main] 2025-05-20 10:48:02 Notice: suricata: This is Suricata version 7.0.8 RELEASE running in SYSTEM mode
+[1 - Suricata-Main] 2025-05-20 10:48:02 Info: cpu: CPUs/cores online: 4
+[1 - Suricata-Main] 2025-05-20 10:48:02 Info: suricata: Setting engine mode to IDS mode by default
+[1 - Suricata-Main] 2025-05-20 10:48:02 Info: ioctl: eth0: MTU 1500
+[1 - Suricata-Main] 2025-05-20 10:48:02 Info: suricata: No 'host-mode': suricata is in IDS mode, using default setting 'sniffer-only'
+[1 - Suricata-Main] 2025-05-20 10:48:02 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[1 - Suricata-Main] 2025-05-20 10:48:02 Warning: counters: stats are enabled but no loggers are active
+[1 - Suricata-Main] 2025-05-20 10:48:02 Error: detect-parse: rule 1000014 setup buffer dns_query but didn't add matches to it
+[1 - Suricata-Main] 2025-05-20 10:48:02 Error: detect: error parsing signature "alert dns $HOME_NET any -> any any (msg:"ET MALWARE High DNS Query Volume"; dns.query; threshold:type threshold, track by_src, count 50, seconds 60; classtype:trojan-activity; sid:1000014; rev:1;)" from file /etc/suricata/rules/local.rules at line 14
+[1 - Suricata-Main] 2025-05-20 10:48:02 Error: detect-parse: unknown rule keyword 'tls.cipher_suite'.
+[1 - Suricata-Main] 2025-05-20 10:48:02 Error: detect: error parsing signature "alert tls any any -> $HOME_NET any (msg:"ET TLS SSL/TLS Cipher Suite Downgrade Attempt"; tls.cipher_suite:0x0000; classtype:attempted-admin; sid:1000026; rev:1;)" from file /etc/suricata/rules/local.rules at line 44
+[1 - Suricata-Main] 2025-05-20 10:48:02 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 10:48:02 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Enumeration Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; classtype:attempted-admin; sid:1000038; rev:1;)" from file /etc/suricata/rules/local.rules at line 70
+[1 - Suricata-Main] 2025-05-20 10:48:02 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 10:48:02 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Null Session Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:4; classtype:attempted-admin; sid:1000039; rev:1;)" from file /etc/suricata/rules/local.rules at line 73
+[1 - Suricata-Main] 2025-05-20 10:48:02 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 10:48:02 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB File Access Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:8; classtype:attempted-admin; sid:1000041; rev:1;)" from file /etc/suricata/rules/local.rules at line 79
+[1 - Suricata-Main] 2025-05-20 10:48:02 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 10:48:02 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Directory Listing Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:12; classtype:attempted-admin; sid:1000042; rev:1;)" from file /etc/suricata/rules/local.rules at line 82
+[1 - Suricata-Main] 2025-05-20 10:48:02 Info: detect: 1 rule files processed. 31 rules successfully loaded, 6 rules failed, 0
+[1 - Suricata-Main] 2025-05-20 10:48:02 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[1 - Suricata-Main] 2025-05-20 10:48:02 Info: detect: 31 signatures processed. 4 are IP-only rules, 8 are inspecting packet payload, 11 inspect application layer, 0 are decoder event only
+[1 - Suricata-Main] 2025-05-20 10:48:02 Info: runmodes: eth0: creating 4 threads
+[1 - Suricata-Main] 2025-05-20 10:48:03 Notice: threads: Threads created -> W: 4 FM: 1 FR: 1   Engine started.
+[1 - Suricata-Main] 2025-05-20 10:56:44 Notice: suricata: Signal Received.  Stopping engine.
+[1 - Suricata-Main] 2025-05-20 10:56:45 Info: suricata: time elapsed 522.410s
+[1 - Suricata-Main] 2025-05-20 10:56:46 Notice: device: eth0: packets: 25, drops: 0 (0.00%), invalid chksum: 0
+[1 - Suricata-Main] 2025-05-20 10:56:46 Notice: suricata: This is Suricata version 7.0.8 RELEASE running in SYSTEM mode
+[1 - Suricata-Main] 2025-05-20 10:56:46 Info: cpu: CPUs/cores online: 4
+[1 - Suricata-Main] 2025-05-20 10:56:46 Info: suricata: Setting engine mode to IDS mode by default
+[1 - Suricata-Main] 2025-05-20 10:56:46 Info: ioctl: eth0: MTU 1500
+[1 - Suricata-Main] 2025-05-20 10:56:46 Info: suricata: No 'host-mode': suricata is in IDS mode, using default setting 'sniffer-only'
+[1 - Suricata-Main] 2025-05-20 10:56:46 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[1 - Suricata-Main] 2025-05-20 10:56:46 Warning: counters: stats are enabled but no loggers are active
+[1 - Suricata-Main] 2025-05-20 10:56:46 Error: detect-parse: rule 1000014 setup buffer dns_query but didn't add matches to it
+[1 - Suricata-Main] 2025-05-20 10:56:46 Error: detect: error parsing signature "alert dns $HOME_NET any -> any any (msg:"ET MALWARE High DNS Query Volume"; dns.query; threshold:type threshold, track by_src, count 50, seconds 60; classtype:trojan-activity; sid:1000014; rev:1;)" from file /etc/suricata/rules/local.rules at line 14
+[1 - Suricata-Main] 2025-05-20 10:56:46 Error: detect-parse: unknown rule keyword 'tls.cipher_suite'.
+[1 - Suricata-Main] 2025-05-20 10:56:46 Error: detect: error parsing signature "alert tls any any -> $HOME_NET any (msg:"ET TLS SSL/TLS Cipher Suite Downgrade Attempt"; tls.cipher_suite:0x0000; classtype:attempted-admin; sid:1000026; rev:1;)" from file /etc/suricata/rules/local.rules at line 44
+[1 - Suricata-Main] 2025-05-20 10:56:46 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 10:56:46 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Enumeration Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; classtype:attempted-admin; sid:1000038; rev:1;)" from file /etc/suricata/rules/local.rules at line 70
+[1 - Suricata-Main] 2025-05-20 10:56:46 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 10:56:46 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Null Session Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:4; classtype:attempted-admin; sid:1000039; rev:1;)" from file /etc/suricata/rules/local.rules at line 73
+[1 - Suricata-Main] 2025-05-20 10:56:46 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 10:56:46 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB File Access Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:8; classtype:attempted-admin; sid:1000041; rev:1;)" from file /etc/suricata/rules/local.rules at line 79
+[1 - Suricata-Main] 2025-05-20 10:56:46 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 10:56:46 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Directory Listing Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:12; classtype:attempted-admin; sid:1000042; rev:1;)" from file /etc/suricata/rules/local.rules at line 82
+[1 - Suricata-Main] 2025-05-20 10:56:46 Info: detect: 1 rule files processed. 31 rules successfully loaded, 6 rules failed, 0
+[1 - Suricata-Main] 2025-05-20 10:56:46 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[1 - Suricata-Main] 2025-05-20 10:56:46 Info: detect: 31 signatures processed. 4 are IP-only rules, 8 are inspecting packet payload, 11 inspect application layer, 0 are decoder event only
+[1 - Suricata-Main] 2025-05-20 10:56:46 Info: runmodes: eth0: creating 4 threads
+[1 - Suricata-Main] 2025-05-20 10:56:47 Notice: threads: Threads created -> W: 4 FM: 1 FR: 1   Engine started.
+[1 - Suricata-Main] 2025-05-20 10:58:36 Notice: suricata: Signal Received.  Stopping engine.
+[1 - Suricata-Main] 2025-05-20 10:58:36 Info: suricata: time elapsed 109.884s
+[1 - Suricata-Main] 2025-05-20 10:58:36 Notice: device: eth0: packets: 10, drops: 0 (0.00%), invalid chksum: 0
+[1 - Suricata-Main] 2025-05-20 10:58:38 Notice: suricata: This is Suricata version 7.0.8 RELEASE running in SYSTEM mode
+[1 - Suricata-Main] 2025-05-20 10:58:38 Info: cpu: CPUs/cores online: 4
+[1 - Suricata-Main] 2025-05-20 10:58:38 Info: suricata: Setting engine mode to IDS mode by default
+[1 - Suricata-Main] 2025-05-20 10:58:38 Info: ioctl: eth0: MTU 1500
+[1 - Suricata-Main] 2025-05-20 10:58:38 Info: suricata: No 'host-mode': suricata is in IDS mode, using default setting 'sniffer-only'
+[1 - Suricata-Main] 2025-05-20 10:58:38 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[1 - Suricata-Main] 2025-05-20 10:58:38 Warning: counters: stats are enabled but no loggers are active
+[1 - Suricata-Main] 2025-05-20 10:58:38 Error: detect-parse: rule 1000014 setup buffer dns_query but didn't add matches to it
+[1 - Suricata-Main] 2025-05-20 10:58:38 Error: detect: error parsing signature "alert dns $HOME_NET any -> any any (msg:"ET MALWARE High DNS Query Volume"; dns.query; threshold:type threshold, track by_src, count 50, seconds 60; classtype:trojan-activity; sid:1000014; rev:1;)" from file /etc/suricata/rules/local.rules at line 14
+[1 - Suricata-Main] 2025-05-20 10:58:38 Error: detect-parse: unknown rule keyword 'tls.cipher_suite'.
+[1 - Suricata-Main] 2025-05-20 10:58:38 Error: detect: error parsing signature "alert tls any any -> $HOME_NET any (msg:"ET TLS SSL/TLS Cipher Suite Downgrade Attempt"; tls.cipher_suite:0x0000; classtype:attempted-admin; sid:1000026; rev:1;)" from file /etc/suricata/rules/local.rules at line 44
+[1 - Suricata-Main] 2025-05-20 10:58:38 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 10:58:38 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Enumeration Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; classtype:attempted-admin; sid:1000038; rev:1;)" from file /etc/suricata/rules/local.rules at line 70
+[1 - Suricata-Main] 2025-05-20 10:58:38 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 10:58:38 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Null Session Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:4; classtype:attempted-admin; sid:1000039; rev:1;)" from file /etc/suricata/rules/local.rules at line 73
+[1 - Suricata-Main] 2025-05-20 10:58:38 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 10:58:38 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB File Access Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:8; classtype:attempted-admin; sid:1000041; rev:1;)" from file /etc/suricata/rules/local.rules at line 79
+[1 - Suricata-Main] 2025-05-20 10:58:38 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 10:58:38 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Directory Listing Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:12; classtype:attempted-admin; sid:1000042; rev:1;)" from file /etc/suricata/rules/local.rules at line 82
+[1 - Suricata-Main] 2025-05-20 10:58:38 Info: detect: 1 rule files processed. 31 rules successfully loaded, 6 rules failed, 0
+[1 - Suricata-Main] 2025-05-20 10:58:38 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[1 - Suricata-Main] 2025-05-20 10:58:38 Info: detect: 31 signatures processed. 4 are IP-only rules, 8 are inspecting packet payload, 11 inspect application layer, 0 are decoder event only
+[1 - Suricata-Main] 2025-05-20 10:58:38 Info: runmodes: eth0: creating 4 threads
+[1 - Suricata-Main] 2025-05-20 10:58:38 Notice: threads: Threads created -> W: 4 FM: 1 FR: 1   Engine started.
+[1 - Suricata-Main] 2025-05-20 11:08:19 Notice: suricata: Signal Received.  Stopping engine.
+[1 - Suricata-Main] 2025-05-20 11:08:19 Info: suricata: time elapsed 581.759s
+[1 - Suricata-Main] 2025-05-20 11:08:20 Notice: device: eth0: packets: 13, drops: 0 (0.00%), invalid chksum: 0
+[1 - Suricata-Main] 2025-05-20 11:08:21 Notice: suricata: This is Suricata version 7.0.8 RELEASE running in SYSTEM mode
+[1 - Suricata-Main] 2025-05-20 11:08:21 Info: cpu: CPUs/cores online: 4
+[1 - Suricata-Main] 2025-05-20 11:08:21 Info: suricata: Setting engine mode to IDS mode by default
+[1 - Suricata-Main] 2025-05-20 11:08:21 Info: ioctl: eth0: MTU 1500
+[1 - Suricata-Main] 2025-05-20 11:08:21 Info: suricata: No 'host-mode': suricata is in IDS mode, using default setting 'sniffer-only'
+[1 - Suricata-Main] 2025-05-20 11:08:21 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[1 - Suricata-Main] 2025-05-20 11:08:21 Warning: counters: stats are enabled but no loggers are active
+[1 - Suricata-Main] 2025-05-20 11:08:21 Error: detect-parse: rule 1000014 setup buffer dns_query but didn't add matches to it
+[1 - Suricata-Main] 2025-05-20 11:08:21 Error: detect: error parsing signature "alert dns $HOME_NET any -> any any (msg:"ET MALWARE High DNS Query Volume"; dns.query; threshold:type threshold, track by_src, count 50, seconds 60; classtype:trojan-activity; sid:1000014; rev:1;)" from file /etc/suricata/rules/local.rules at line 14
+[1 - Suricata-Main] 2025-05-20 11:08:21 Error: detect-parse: unknown rule keyword 'tls.cipher_suite'.
+[1 - Suricata-Main] 2025-05-20 11:08:21 Error: detect: error parsing signature "alert tls any any -> $HOME_NET any (msg:"ET TLS SSL/TLS Cipher Suite Downgrade Attempt"; tls.cipher_suite:0x0000; classtype:attempted-admin; sid:1000026; rev:1;)" from file /etc/suricata/rules/local.rules at line 44
+[1 - Suricata-Main] 2025-05-20 11:08:21 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 11:08:21 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Enumeration Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; classtype:attempted-admin; sid:1000038; rev:1;)" from file /etc/suricata/rules/local.rules at line 70
+[1 - Suricata-Main] 2025-05-20 11:08:21 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 11:08:21 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Null Session Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:4; classtype:attempted-admin; sid:1000039; rev:1;)" from file /etc/suricata/rules/local.rules at line 73
+[1 - Suricata-Main] 2025-05-20 11:08:21 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 11:08:21 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB File Access Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:8; classtype:attempted-admin; sid:1000041; rev:1;)" from file /etc/suricata/rules/local.rules at line 79
+[1 - Suricata-Main] 2025-05-20 11:08:21 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 11:08:21 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Directory Listing Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:12; classtype:attempted-admin; sid:1000042; rev:1;)" from file /etc/suricata/rules/local.rules at line 82
+[1 - Suricata-Main] 2025-05-20 11:08:21 Info: detect: 1 rule files processed. 31 rules successfully loaded, 6 rules failed, 0
+[1 - Suricata-Main] 2025-05-20 11:08:21 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[1 - Suricata-Main] 2025-05-20 11:08:21 Info: detect: 31 signatures processed. 4 are IP-only rules, 8 are inspecting packet payload, 11 inspect application layer, 0 are decoder event only
+[1 - Suricata-Main] 2025-05-20 11:08:22 Info: runmodes: eth0: creating 4 threads
+[1 - Suricata-Main] 2025-05-20 11:08:22 Notice: threads: Threads created -> W: 4 FM: 1 FR: 1   Engine started.
+[1 - Suricata-Main] 2025-05-20 15:36:25 Notice: suricata: This is Suricata version 7.0.8 RELEASE running in SYSTEM mode
+[1 - Suricata-Main] 2025-05-20 15:36:25 Info: cpu: CPUs/cores online: 4
+[1 - Suricata-Main] 2025-05-20 15:36:25 Info: suricata: Setting engine mode to IDS mode by default
+[1 - Suricata-Main] 2025-05-20 15:36:25 Info: ioctl: eth0: MTU 1500
+[1 - Suricata-Main] 2025-05-20 15:36:25 Info: suricata: No 'host-mode': suricata is in IDS mode, using default setting 'sniffer-only'
+[1 - Suricata-Main] 2025-05-20 15:36:25 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[1 - Suricata-Main] 2025-05-20 15:36:25 Warning: counters: stats are enabled but no loggers are active
+[1 - Suricata-Main] 2025-05-20 15:36:25 Error: detect-parse: rule 1000014 setup buffer dns_query but didn't add matches to it
+[1 - Suricata-Main] 2025-05-20 15:36:25 Error: detect: error parsing signature "alert dns $HOME_NET any -> any any (msg:"ET MALWARE High DNS Query Volume"; dns.query; threshold:type threshold, track by_src, count 50, seconds 60; classtype:trojan-activity; sid:1000014; rev:1;)" from file /etc/suricata/rules/local.rules at line 14
+[1 - Suricata-Main] 2025-05-20 15:36:25 Error: detect-parse: unknown rule keyword 'tls.cipher_suite'.
+[1 - Suricata-Main] 2025-05-20 15:36:25 Error: detect: error parsing signature "alert tls any any -> $HOME_NET any (msg:"ET TLS SSL/TLS Cipher Suite Downgrade Attempt"; tls.cipher_suite:0x0000; classtype:attempted-admin; sid:1000026; rev:1;)" from file /etc/suricata/rules/local.rules at line 44
+[1 - Suricata-Main] 2025-05-20 15:36:25 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 15:36:25 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Enumeration Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; classtype:attempted-admin; sid:1000038; rev:1;)" from file /etc/suricata/rules/local.rules at line 70
+[1 - Suricata-Main] 2025-05-20 15:36:25 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 15:36:25 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Null Session Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:4; classtype:attempted-admin; sid:1000039; rev:1;)" from file /etc/suricata/rules/local.rules at line 73
+[1 - Suricata-Main] 2025-05-20 15:36:25 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 15:36:25 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB File Access Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:8; classtype:attempted-admin; sid:1000041; rev:1;)" from file /etc/suricata/rules/local.rules at line 79
+[1 - Suricata-Main] 2025-05-20 15:36:25 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 15:36:25 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Directory Listing Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:12; classtype:attempted-admin; sid:1000042; rev:1;)" from file /etc/suricata/rules/local.rules at line 82
+[1 - Suricata-Main] 2025-05-20 15:36:25 Info: detect: 1 rule files processed. 31 rules successfully loaded, 6 rules failed, 0
+[1 - Suricata-Main] 2025-05-20 15:36:25 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[1 - Suricata-Main] 2025-05-20 15:36:25 Info: detect: 31 signatures processed. 4 are IP-only rules, 8 are inspecting packet payload, 11 inspect application layer, 0 are decoder event only
+[1 - Suricata-Main] 2025-05-20 15:36:25 Info: runmodes: eth0: creating 4 threads
+[1 - Suricata-Main] 2025-05-20 15:36:25 Notice: threads: Threads created -> W: 4 FM: 1 FR: 1   Engine started.
+[1 - Suricata-Main] 2025-05-20 15:58:22 Notice: suricata: Signal Received.  Stopping engine.
+[1 - Suricata-Main] 2025-05-20 15:58:22 Info: suricata: time elapsed 1317.281s
+[1 - Suricata-Main] 2025-05-20 15:58:23 Notice: device: eth0: packets: 26, drops: 0 (0.00%), invalid chksum: 0
+[1 - Suricata-Main] 2025-05-20 15:58:24 Notice: suricata: This is Suricata version 7.0.8 RELEASE running in SYSTEM mode
+[1 - Suricata-Main] 2025-05-20 15:58:24 Info: cpu: CPUs/cores online: 4
+[1 - Suricata-Main] 2025-05-20 15:58:24 Info: suricata: Setting engine mode to IDS mode by default
+[1 - Suricata-Main] 2025-05-20 15:58:24 Info: ioctl: eth0: MTU 1500
+[1 - Suricata-Main] 2025-05-20 15:58:24 Info: suricata: No 'host-mode': suricata is in IDS mode, using default setting 'sniffer-only'
+[1 - Suricata-Main] 2025-05-20 15:58:24 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[1 - Suricata-Main] 2025-05-20 15:58:24 Warning: counters: stats are enabled but no loggers are active
+[1 - Suricata-Main] 2025-05-20 15:58:24 Error: detect-parse: rule 1000014 setup buffer dns_query but didn't add matches to it
+[1 - Suricata-Main] 2025-05-20 15:58:24 Error: detect: error parsing signature "alert dns $HOME_NET any -> any any (msg:"ET MALWARE High DNS Query Volume"; dns.query; threshold:type threshold, track by_src, count 50, seconds 60; classtype:trojan-activity; sid:1000014; rev:1;)" from file /etc/suricata/rules/local.rules at line 14
+[1 - Suricata-Main] 2025-05-20 15:58:24 Error: detect-parse: unknown rule keyword 'tls.cipher_suite'.
+[1 - Suricata-Main] 2025-05-20 15:58:24 Error: detect: error parsing signature "alert tls any any -> $HOME_NET any (msg:"ET TLS SSL/TLS Cipher Suite Downgrade Attempt"; tls.cipher_suite:0x0000; classtype:attempted-admin; sid:1000026; rev:1;)" from file /etc/suricata/rules/local.rules at line 44
+[1 - Suricata-Main] 2025-05-20 15:58:24 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 15:58:24 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Enumeration Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; classtype:attempted-admin; sid:1000038; rev:1;)" from file /etc/suricata/rules/local.rules at line 70
+[1 - Suricata-Main] 2025-05-20 15:58:24 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 15:58:24 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Null Session Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:4; classtype:attempted-admin; sid:1000039; rev:1;)" from file /etc/suricata/rules/local.rules at line 73
+[1 - Suricata-Main] 2025-05-20 15:58:24 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 15:58:24 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB File Access Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:8; classtype:attempted-admin; sid:1000041; rev:1;)" from file /etc/suricata/rules/local.rules at line 79
+[1 - Suricata-Main] 2025-05-20 15:58:24 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 15:58:24 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Directory Listing Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:12; classtype:attempted-admin; sid:1000042; rev:1;)" from file /etc/suricata/rules/local.rules at line 82
+[1 - Suricata-Main] 2025-05-20 15:58:24 Info: detect: 1 rule files processed. 31 rules successfully loaded, 6 rules failed, 0
+[1 - Suricata-Main] 2025-05-20 15:58:24 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[1 - Suricata-Main] 2025-05-20 15:58:24 Info: detect: 31 signatures processed. 4 are IP-only rules, 8 are inspecting packet payload, 11 inspect application layer, 0 are decoder event only
+[1 - Suricata-Main] 2025-05-20 15:58:24 Info: runmodes: eth0: creating 4 threads
+[1 - Suricata-Main] 2025-05-20 15:58:24 Notice: threads: Threads created -> W: 4 FM: 1 FR: 1   Engine started.
+[1 - Suricata-Main] 2025-05-20 16:01:09 Notice: suricata: Signal Received.  Stopping engine.
+[1 - Suricata-Main] 2025-05-20 16:01:09 Info: suricata: time elapsed 165.110s
+[1 - Suricata-Main] 2025-05-20 16:01:10 Notice: device: eth0: packets: 11, drops: 0 (0.00%), invalid chksum: 0
+[1 - Suricata-Main] 2025-05-20 16:01:11 Notice: suricata: This is Suricata version 7.0.8 RELEASE running in SYSTEM mode
+[1 - Suricata-Main] 2025-05-20 16:01:11 Info: cpu: CPUs/cores online: 4
+[1 - Suricata-Main] 2025-05-20 16:01:11 Info: suricata: Setting engine mode to IDS mode by default
+[1 - Suricata-Main] 2025-05-20 16:01:11 Info: ioctl: eth0: MTU 1500
+[1 - Suricata-Main] 2025-05-20 16:01:11 Info: suricata: No 'host-mode': suricata is in IDS mode, using default setting 'sniffer-only'
+[1 - Suricata-Main] 2025-05-20 16:01:11 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[1 - Suricata-Main] 2025-05-20 16:01:11 Warning: counters: stats are enabled but no loggers are active
+[1 - Suricata-Main] 2025-05-20 16:01:11 Error: detect-parse: rule 1000014 setup buffer dns_query but didn't add matches to it
+[1 - Suricata-Main] 2025-05-20 16:01:11 Error: detect: error parsing signature "alert dns $HOME_NET any -> any any (msg:"ET MALWARE High DNS Query Volume"; dns.query; threshold:type threshold, track by_src, count 50, seconds 60; classtype:trojan-activity; sid:1000014; rev:1;)" from file /etc/suricata/rules/local.rules at line 14
+[1 - Suricata-Main] 2025-05-20 16:01:11 Error: detect-parse: unknown rule keyword 'tls.cipher_suite'.
+[1 - Suricata-Main] 2025-05-20 16:01:11 Error: detect: error parsing signature "alert tls any any -> $HOME_NET any (msg:"ET TLS SSL/TLS Cipher Suite Downgrade Attempt"; tls.cipher_suite:0x0000; classtype:attempted-admin; sid:1000026; rev:1;)" from file /etc/suricata/rules/local.rules at line 44
+[1 - Suricata-Main] 2025-05-20 16:01:11 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 16:01:11 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Enumeration Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; classtype:attempted-admin; sid:1000038; rev:1;)" from file /etc/suricata/rules/local.rules at line 70
+[1 - Suricata-Main] 2025-05-20 16:01:11 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 16:01:11 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Null Session Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:4; classtype:attempted-admin; sid:1000039; rev:1;)" from file /etc/suricata/rules/local.rules at line 73
+[1 - Suricata-Main] 2025-05-20 16:01:11 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 16:01:11 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB File Access Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:8; classtype:attempted-admin; sid:1000041; rev:1;)" from file /etc/suricata/rules/local.rules at line 79
+[1 - Suricata-Main] 2025-05-20 16:01:11 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 16:01:11 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Directory Listing Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:12; classtype:attempted-admin; sid:1000042; rev:1;)" from file /etc/suricata/rules/local.rules at line 82
+[1 - Suricata-Main] 2025-05-20 16:01:11 Info: detect: 1 rule files processed. 31 rules successfully loaded, 6 rules failed, 0
+[1 - Suricata-Main] 2025-05-20 16:01:11 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[1 - Suricata-Main] 2025-05-20 16:01:11 Info: detect: 31 signatures processed. 4 are IP-only rules, 8 are inspecting packet payload, 11 inspect application layer, 0 are decoder event only
+[1 - Suricata-Main] 2025-05-20 16:01:11 Info: runmodes: eth0: creating 4 threads
+[1 - Suricata-Main] 2025-05-20 16:01:12 Notice: threads: Threads created -> W: 4 FM: 1 FR: 1   Engine started.
+[1 - Suricata-Main] 2025-05-20 16:12:34 Notice: suricata: This is Suricata version 7.0.8 RELEASE running in SYSTEM mode
+[1 - Suricata-Main] 2025-05-20 16:12:34 Info: cpu: CPUs/cores online: 4
+[1 - Suricata-Main] 2025-05-20 16:12:34 Info: suricata: Setting engine mode to IDS mode by default
+[1 - Suricata-Main] 2025-05-20 16:12:34 Info: ioctl: eth0: MTU 1500
+[1 - Suricata-Main] 2025-05-20 16:12:34 Info: suricata: No 'host-mode': suricata is in IDS mode, using default setting 'sniffer-only'
+[1 - Suricata-Main] 2025-05-20 16:12:34 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[1 - Suricata-Main] 2025-05-20 16:12:34 Warning: counters: stats are enabled but no loggers are active
+[1 - Suricata-Main] 2025-05-20 16:12:34 Error: detect-parse: rule 1000014 setup buffer dns_query but didn't add matches to it
+[1 - Suricata-Main] 2025-05-20 16:12:34 Error: detect: error parsing signature "alert dns $HOME_NET any -> any any (msg:"ET MALWARE High DNS Query Volume"; dns.query; threshold:type threshold, track by_src, count 50, seconds 60; classtype:trojan-activity; sid:1000014; rev:1;)" from file /etc/suricata/rules/local.rules at line 14
+[1 - Suricata-Main] 2025-05-20 16:12:34 Error: detect-parse: unknown rule keyword 'tls.cipher_suite'.
+[1 - Suricata-Main] 2025-05-20 16:12:34 Error: detect: error parsing signature "alert tls any any -> $HOME_NET any (msg:"ET TLS SSL/TLS Cipher Suite Downgrade Attempt"; tls.cipher_suite:0x0000; classtype:attempted-admin; sid:1000026; rev:1;)" from file /etc/suricata/rules/local.rules at line 44
+[1 - Suricata-Main] 2025-05-20 16:12:34 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 16:12:34 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Enumeration Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; classtype:attempted-admin; sid:1000038; rev:1;)" from file /etc/suricata/rules/local.rules at line 70
+[1 - Suricata-Main] 2025-05-20 16:12:34 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 16:12:34 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Null Session Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:4; classtype:attempted-admin; sid:1000039; rev:1;)" from file /etc/suricata/rules/local.rules at line 73
+[1 - Suricata-Main] 2025-05-20 16:12:34 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 16:12:34 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB File Access Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:8; classtype:attempted-admin; sid:1000041; rev:1;)" from file /etc/suricata/rules/local.rules at line 79
+[1 - Suricata-Main] 2025-05-20 16:12:34 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 16:12:34 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Directory Listing Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:12; classtype:attempted-admin; sid:1000042; rev:1;)" from file /etc/suricata/rules/local.rules at line 82
+[1 - Suricata-Main] 2025-05-20 16:12:34 Info: detect: 1 rule files processed. 31 rules successfully loaded, 6 rules failed, 0
+[1 - Suricata-Main] 2025-05-20 16:12:34 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[1 - Suricata-Main] 2025-05-20 16:12:34 Info: detect: 31 signatures processed. 4 are IP-only rules, 8 are inspecting packet payload, 11 inspect application layer, 0 are decoder event only
+[1 - Suricata-Main] 2025-05-20 16:12:34 Info: runmodes: eth0: creating 4 threads
+[1 - Suricata-Main] 2025-05-20 16:12:35 Notice: threads: Threads created -> W: 4 FM: 1 FR: 1   Engine started.
+[1 - Suricata-Main] 2025-05-20 16:14:53 Notice: suricata: This is Suricata version 7.0.8 RELEASE running in SYSTEM mode
+[1 - Suricata-Main] 2025-05-20 16:14:53 Info: cpu: CPUs/cores online: 4
+[1 - Suricata-Main] 2025-05-20 16:14:53 Info: suricata: Setting engine mode to IDS mode by default
+[1 - Suricata-Main] 2025-05-20 16:14:53 Info: ioctl: eth0: MTU 1500
+[1 - Suricata-Main] 2025-05-20 16:14:53 Info: suricata: No 'host-mode': suricata is in IDS mode, using default setting 'sniffer-only'
+[1 - Suricata-Main] 2025-05-20 16:14:53 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[1 - Suricata-Main] 2025-05-20 16:14:53 Warning: counters: stats are enabled but no loggers are active
+[1 - Suricata-Main] 2025-05-20 16:14:53 Error: detect-parse: rule 1000014 setup buffer dns_query but didn't add matches to it
+[1 - Suricata-Main] 2025-05-20 16:14:53 Error: detect: error parsing signature "alert dns $HOME_NET any -> any any (msg:"ET MALWARE High DNS Query Volume"; dns.query; threshold:type threshold, track by_src, count 50, seconds 60; classtype:trojan-activity; sid:1000014; rev:1;)" from file /etc/suricata/rules/local.rules at line 14
+[1 - Suricata-Main] 2025-05-20 16:14:53 Error: detect-parse: unknown rule keyword 'tls.cipher_suite'.
+[1 - Suricata-Main] 2025-05-20 16:14:53 Error: detect: error parsing signature "alert tls any any -> $HOME_NET any (msg:"ET TLS SSL/TLS Cipher Suite Downgrade Attempt"; tls.cipher_suite:0x0000; classtype:attempted-admin; sid:1000026; rev:1;)" from file /etc/suricata/rules/local.rules at line 44
+[1 - Suricata-Main] 2025-05-20 16:14:53 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 16:14:53 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Enumeration Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; classtype:attempted-admin; sid:1000038; rev:1;)" from file /etc/suricata/rules/local.rules at line 70
+[1 - Suricata-Main] 2025-05-20 16:14:53 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 16:14:53 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Null Session Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:4; classtype:attempted-admin; sid:1000039; rev:1;)" from file /etc/suricata/rules/local.rules at line 73
+[1 - Suricata-Main] 2025-05-20 16:14:53 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 16:14:53 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB File Access Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:8; classtype:attempted-admin; sid:1000041; rev:1;)" from file /etc/suricata/rules/local.rules at line 79
+[1 - Suricata-Main] 2025-05-20 16:14:53 Error: detect-content: '\' has to be escaped
+[1 - Suricata-Main] 2025-05-20 16:14:53 Error: detect: error parsing signature "alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Directory Listing Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; offset:12; classtype:attempted-admin; sid:1000042; rev:1;)" from file /etc/suricata/rules/local.rules at line 82
+[1 - Suricata-Main] 2025-05-20 16:14:53 Info: detect: 1 rule files processed. 31 rules successfully loaded, 6 rules failed, 0
+[1 - Suricata-Main] 2025-05-20 16:14:53 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[1 - Suricata-Main] 2025-05-20 16:14:53 Info: detect: 31 signatures processed. 4 are IP-only rules, 8 are inspecting packet payload, 11 inspect application layer, 0 are decoder event only
+[1 - Suricata-Main] 2025-05-20 16:14:53 Info: runmodes: eth0: creating 4 threads
+[1 - Suricata-Main] 2025-05-20 16:14:53 Notice: threads: Threads created -> W: 4 FM: 1 FR: 1   Engine started.

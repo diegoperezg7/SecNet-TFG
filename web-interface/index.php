@@ -94,39 +94,6 @@
                         $alerts_by_hour[$row['hour']] = $row['count'];
                     }
 
-                    // Generar labels por hora para el rango seleccionado
-                    $labels = [];
-                    if ($useTimeFilter && is_numeric($timeRange) && $timeRange > 0) {
-                        $start = new DateTime("-{$timeRange} hours");
-                        $end = new DateTime();
-                        $interval = new DateInterval('PT1H');
-                        $period = new DatePeriod($start, $interval, $end->add($interval));
-                        foreach ($period as $dt) {
-                            $labels[] = $dt->format('d-m-Y H:00');
-                        }
-                    } else {
-                        // Por defecto, últimos 7 días, por hora
-                        $start = new DateTime("-168 hours");
-                        $end = new DateTime();
-                        $interval = new DateInterval('PT1H');
-                        $period = new DatePeriod($start, $interval, $end->add($interval));
-                        foreach ($period as $dt) {
-                            $labels[] = $dt->format('d-m-Y H:00');
-                        }
-                    }
-
-                    // Mapear datos de la base de datos a los labels
-                    $alerts_by_hour_full = array_fill_keys($labels, 0);
-                    foreach ($alerts_by_hour as $hour => $count) {
-                        $h = DateTime::createFromFormat('Y-m-d H:i:s', $hour);
-                        if ($h) {
-                            $key = $h->format('d-m-Y H:00');
-                            if (isset($alerts_by_hour_full[$key])) {
-                                $alerts_by_hour_full[$key] = $count;
-                            }
-                        }
-                    }
-
                     // Get severity distribution
                     $severity_dist = [];
                     $severity_query = "SELECT severity, COUNT(*) as count FROM alerts WHERE $where_not_blocked AND $timeFilter GROUP BY severity ORDER BY severity";
@@ -177,16 +144,58 @@
                     </div>
                 </div>
                 <div class="charts-container">
+<?php
+// Preparar datos para gráficos
+function prepareChartDatasets() {
+    $db = new SQLite3('/var/www/html/database/alerts.db');
+    
+    // Obtener tipos de alertas
+    $alert_types = [];
+    $query = "SELECT alert_message, COUNT(*) as count FROM alerts GROUP BY alert_message ORDER BY count DESC LIMIT 5";
+    $alert_types_result = $db->query($query);
+    while ($row = $alert_types_result->fetchArray(SQLITE3_ASSOC)) {
+        $alert_types[$row['alert_message']] = $row['count'];
+    }
+    
+    // Obtener distribución de severidad
+    $severity_dist = [];
+    $severity_query = "SELECT severity, COUNT(*) as count FROM alerts GROUP BY severity ORDER BY severity";
+    $severity_result = $db->query($severity_query);
+    while ($row = $severity_result->fetchArray(SQLITE3_ASSOC)) {
+        $severity_dist[$row['severity']] = $row['count'];
+    }
+    
+    // Obtener alertas por hora
+    $alerts_by_hour = [];
+    $timeline_query = "SELECT strftime('%Y-%m-%d %H:00:00', timestamp) as hour, COUNT(*) as count FROM alerts GROUP BY hour ORDER BY hour";
+    $timeline_result = $db->query($timeline_query);
+    while ($row = $timeline_result->fetchArray(SQLITE3_ASSOC)) {
+        $alerts_by_hour[$row['hour']] = $row['count'];
+    }
+    
+    return [
+        'alert_types' => $alert_types,
+        'severity_dist' => $severity_dist,
+        'alerts_by_hour' => $alerts_by_hour
+    ];
+}
+
+$chartData = prepareChartDatasets();
+?>
+
                     <div class="chart-card">
-                        <h3><i class="fas fa-chart-line"></i> Línea temporal de alertas</h3>
-                        <div class="chart-container">
-                            <canvas id="alertTimelineChart"></canvas>
+                        <div class="alert-types-chart-container">
+                            <h3 class="alert-types-chart-title"><i class="fas fa-chart-pie"></i> Tipos de Alertas</h3>
+                            <div class="chart-container" style="min-height: 300px;">
+                                <canvas id="alertTypesChart" style="width: 100%; height: 100%;"></canvas>
+                            </div>
+                            <div class="alert-types-legend" id="alertTypesLegend"></div>
                         </div>
                     </div>
                     <div class="chart-card">
                         <h3><i class="fas fa-chart-bar"></i> Distribución de severidad</h3>
-                        <div class="chart-container">
-                            <canvas id="severityChart"></canvas>
+                        <div class="chart-container" style="min-height: 300px;">
+                            <canvas id="severityChart" style="width: 100%; height: 100%;"></canvas>
                         </div>
                     </div>
                 </div>
@@ -254,7 +263,7 @@
             </section>
         </main>
         
-        <footer>
+        <footer class="footer-container">
             <p>&copy; <?php echo date('Y'); ?> Sistema Automatizado de Respuesta a Incidentes</p>
         </footer>
     </div>
@@ -264,8 +273,8 @@
     const alertTypesData = <?php echo json_encode(array_values($alert_types)); ?>;
     const alertTypesLabels = <?php echo json_encode(array_keys($alert_types)); ?>;
     
-    const timelineLabels = <?php echo json_encode($labels); ?>;
-    const timelineData = <?php echo json_encode(array_values($alerts_by_hour_full)); ?>;
+    const timelineLabels = <?php echo json_encode(array_keys($alerts_by_hour)); ?>;
+    const timelineData = <?php echo json_encode(array_values($alerts_by_hour)); ?>;
     
     const severityLabels = <?php echo json_encode(array_keys($severity_dist)); ?>;
     const severityData = <?php echo json_encode(array_values($severity_dist)); ?>;

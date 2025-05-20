@@ -113,24 +113,18 @@ def classify_alert(alert_data):
     alert_msg = alert_data.get('alert', {}).get('signature', '')
     severity = int(alert_data.get('alert', {}).get('severity', 1))
 
-    # --- FILTRO HTTP TRAFFIC INTERNO ---
-    if 'http traffic' in alert_msg.lower():
-        # Si el src_ip es local o el destino es local/seguro, categorizar como bajo
-        if src_ip in LOCAL_IPS or dest_ip in LOCAL_IPS or dest_ip in SAFE_IPS:
+    # --- HTTP interno: capturar SIEMPRE como severidad 1 ---
+    if 'http' in alert_msg.lower():
+        if (src_ip in LOCAL_IPS or src_ip in SAFE_IPS) and (dest_ip in LOCAL_IPS or dest_ip in SAFE_IPS):
             return 'HTTP interno bajo', 1
-        # Si el dominio de destino es seguro
         for pattern in SAFE_DOMAINS:
             if (dns_rrname and re.search(pattern, dns_rrname)) or re.search(pattern, dest_ip):
                 return 'HTTP interno bajo', 1
-    # --- FIN FILTRO ---
+    # --- FIN HTTP interno ---
 
-    # Tráfico interno seguro
-    if src_ip in LOCAL_IPS:
-        if dest_ip in LOCAL_IPS or dest_ip in SAFE_IPS:
-            return 'Tráfico interno seguro', 0
-        for pattern in SAFE_DOMAINS:
-            if (dns_rrname and re.search(pattern, dns_rrname)) or re.search(pattern, dest_ip):
-                return 'Tráfico legítimo externo', 1
+    # Tráfico interno seguro (NO HTTP): ignorar
+    if (src_ip in LOCAL_IPS or src_ip in SAFE_IPS) and (dest_ip in LOCAL_IPS or dest_ip in SAFE_IPS):
+        return 'Tráfico interno seguro', 0
     for pattern in SAFE_DOMAINS:
         if (dns_rrname and re.search(pattern, dns_rrname)) or re.search(pattern, dest_ip):
             return 'Tráfico legítimo externo', 1
@@ -141,6 +135,7 @@ def classify_alert(alert_data):
     if severity >= 2:
         return 'Actividad sospechosa', severity
     return 'Actividad sospechosa', severity
+
 
 def process_alert(alert_data):
     """Process a Suricata alert and take appropriate action"""
@@ -161,9 +156,10 @@ def process_alert(alert_data):
             return
         elif categoria == 'Tráfico legítimo externo':
             severity = 1
+            action_taken = "Tráfico legítimo externo registrado"
         else:
             severity = nueva_severidad
-        action_taken = "Logged only"
+            action_taken = "Logged only"
         if (categoria == 'Amenaza confirmada' or (categoria == 'Actividad sospechosa' and severity >= 2)) and src_ip not in LOCAL_IPS and src_ip not in SAFE_IPS:
             if block_ip(src_ip, f"{alert_message} [{categoria}]"):
                 action_taken = f"Blocked source IP: {src_ip}"

@@ -26,7 +26,6 @@
         </header>
         <main>
             <section class="alerts-section">
-                <h2 class="dashboard-header" style="font-family: 'Orbitron', sans-serif;">Alertas de Seguridad</h2>
                 <!-- Botón para mostrar/ocultar filtros -->
                 <button id="toggleFiltersBtn" class="filter-button" type="button" style="margin-bottom:1.2rem;"><i class="fas fa-sliders-h"></i> Filtrar</button>
                 <div class="filters" id="filtersPanel" style="display:none;">
@@ -92,6 +91,12 @@
                             if (isset($_GET['timeframe']) && $_GET['timeframe'] !== '') {
                                 $hours = intval($_GET['timeframe']);
                                 $query .= " AND timestamp > datetime('now', '-$hours hours')";
+                                // Convertir a timestamp Unix para el frontend
+                                $timeLimit = strtotime("-$hours hours");
+                                $MIN_ALERT_TIMESTAMP = $timeLimit;
+                            } else {
+                                // Si no hay filtro de tiempo, no aplicar límite
+                                $MIN_ALERT_TIMESTAMP = null;
                             }
                             $query .= " ORDER BY timestamp DESC LIMIT 100";
                             $stmt = $db->prepare($query);
@@ -123,7 +128,7 @@
                 </div>
             </section>
         </main>
-        <footer>
+        <footer class="footer-container">
             <p>&copy; <?php echo date('Y'); ?> Sistema Automatizado de Respuesta a Incidentes</p>
         </footer>
     </div>
