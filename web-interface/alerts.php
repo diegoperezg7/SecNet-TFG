@@ -74,6 +74,9 @@
                         <tbody>
                             <?php
                             $db = new SQLite3('/var/www/html/database/alerts.db');
+                            // Configurar zona horaria para SQLite
+                            $db->exec("PRAGMA timezone = 'Europe/Madris'");
+                            
                             $query = "SELECT * FROM alerts WHERE 1=1";
                             $params = [];
                             if (isset($_GET['severity']) && $_GET['severity'] !== '') {
@@ -90,7 +93,7 @@
                             }
                             if (isset($_GET['timeframe']) && $_GET['timeframe'] !== '') {
                                 $hours = intval($_GET['timeframe']);
-                                $query .= " AND timestamp > datetime('now', '-$hours hours')";
+                                $query .= " AND timestamp > datetime('now', '-$hours hours', 'localtime')";
                                 // Convertir a timestamp Unix para el frontend
                                 $timeLimit = strtotime("-$hours hours");
                                 $MIN_ALERT_TIMESTAMP = $timeLimit;
@@ -108,7 +111,10 @@
                                 $severity_class = ($row['severity'] >= 2) ? 'high' : (($row['severity'] == 1) ? 'medium' : 'low');
                                 echo '<tr>';
                                 echo '<td>' . $row['id'] . '</td>';
-                                echo '<td>' . date('d-m-Y H:i', strtotime($row['timestamp'])) . '</td>';
+                                // Convertir la fecha/hora a la zona horaria de Madrid
+                                $date = new DateTime($row['timestamp'], new DateTimeZone('UTC'));
+                                $date->setTimezone(new DateTimeZone('Europe/Madrid'));
+                                echo '<td>' . $date->format('d-m-Y H:i') . '</td>';
                                 echo '<td>' . htmlspecialchars($row['src_ip']) . '</td>';
                                 echo '<td>' . htmlspecialchars($row['dest_ip']) . '</td>';
                                 echo '<td>' . htmlspecialchars($row['alert_message']) . '</td>';
