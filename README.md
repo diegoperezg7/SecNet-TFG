@@ -45,9 +45,10 @@ Este sistema está diseñado para proporcionar una solución integral y automati
 
 ---
 
-![Captura de pantalla 2025-05-22 193505](https://github.com/user-attachments/assets/af892dd1-93ba-4ffc-816b-6327b866ca77)
-![Captura de pantalla 2025-05-22 193528](https://github.com/user-attachments/assets/5c9289ff-95ed-41f4-9b32-c610ba91b853)
+![Captura de pantalla 2025-05-22 193505](https://github.com/user-attachments/assets/af892dd1-93ba-4ffc-816b-6327b866ca77)![Captura de pantalla 2025-05-22 193528](https://github.com/user-attachments/assets/5c9289ff-95ed-41f4-9b32-c610ba91b853)
+
 ![Captura de pantalla 2025-05-22 193552](https://github.com/user-attachments/assets/f6a40d35-2c44-4882-9595-87ce1ed7321f)
+
 ![Captura de pantalla 2025-05-22 193616](https://github.com/user-attachments/assets/08334e02-190a-46b9-9673-9f58d1d37f5c)
 
 ---
