@@ -70,7 +70,13 @@ function initCharts() {
     } else {
         console.log('Creando gráfico de severidad con datos:', window.severityData);
         // Mapa de colores para la severidad
-        const severityColors = ['#43e97b', '#ffd600', '#d50000'];
+        // 0: Baja (verde), 1: Media (amarillo), 2: Alta (rojo)
+        const severityColors = {
+            '0': '#43e97b',  // Baja - Verde
+            '1': '#ffd600',  // Media - Amarillo
+            '2': '#d50000',  // Alta - Rojo
+            '3': '#d50000'   // Crítica - Rojo (en caso de que haya nivel 3)
+        };
         
         // Gráfico de distribución de severidad
         new Chart(severityCtx.getContext('2d'), {
@@ -79,9 +85,12 @@ function initCharts() {
                 labels: window.severityData.labels,
                 datasets: [{
                     data: window.severityData.data,
-                    backgroundColor: window.severityData.data.map((_, index) => 
-                        severityColors[index % severityColors.length]
-                    ),
+                    backgroundColor: window.severityData.labels.map(label => {
+                        // Extraer el número de severidad de la etiqueta (ej: 'Severidad 1' -> 1)
+                        const severityMatch = label.match(/\d+/);
+                        const severity = severityMatch ? severityMatch[0] : '1'; // Por defecto media si no se puede determinar
+                        return severityColors[severity] || '#ffd600'; // Amarillo por defecto
+                    }),
                     borderWidth: 1
                 }]
             },
