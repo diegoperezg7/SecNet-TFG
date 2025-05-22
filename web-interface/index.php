@@ -38,15 +38,6 @@
         <main>
             <div class="dashboard-header">
                 <h2><i class="fas fa-chart-line"></i> Resumen de Seguridad</h2>
-                <div class="date-filter">
-                    <select id="timeRange" onchange="updateDashboard()">
-                        <option value="">Todas las alertas</option>
-                        <option value="24">Últimas 24 horas</option>
-                        <option value="48">Últimas 48 horas</option>
-                        <option value="168">Últimos 7 días</option>
-                        <option value="720">Últimos 30 días</option>
-                    </select>
-                </div>
             </div>
             <section class="dashboard">
                 <div class="stats-container">

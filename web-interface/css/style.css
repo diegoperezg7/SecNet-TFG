@@ -383,8 +383,8 @@ body {
 header {
     background: linear-gradient(90deg, #1b263b 60%, #00b4d8 100%);
     color: white;
-    padding: 1.4rem 2vw;
-    margin-bottom: 2.2rem;
+    padding: 1rem 2vw; /* Reducido de 1.4rem */
+    margin-bottom: 1.5rem; /* Reducido de 2.2rem */
     box-shadow: var(--shadow-md);
     display: flex;
     justify-content: space-between;
@@ -405,11 +405,22 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
-    padding: 1.2rem 2rem 0 2rem;
+    margin-bottom: 1rem; /* Reducido de 2rem */
+    padding: 0.8rem 1.5rem 0 1.5rem; /* Reducido el padding */
 }
 
-.dashboard-header h2,
+.dashboard-header h2 {
+    font-family: 'Orbitron', 'Segoe UI', 'Roboto', Arial, sans-serif;
+    font-size: 1.4rem; /* Aumentado de 1.2rem */
+    font-weight: 600;
+    color: var(--accent-blue);
+    letter-spacing: 0.04em; /* Un poco más de espacio entre letras */
+    text-shadow: 0 1px 8px #00b4d825;
+    margin: 0 0 0 0.5rem; /* Un poco más de margen izquierdo */
+    padding: 0.3rem 0; /* Un poco más de padding vertical */
+    text-transform: uppercase;
+}
+
 .logo-container h1 {
     font-family: 'Orbitron', 'Segoe UI', 'Roboto', Arial, sans-serif;
     font-size: 2.7rem;
@@ -447,16 +458,16 @@ header {
 .stat-card {
     background: var(--card-bg);
     box-shadow: var(--shadow-md);
-    border-radius: var(--radius-lg);
-    padding: 2rem 2rem;
-    min-width: 210px;
-    flex: 1 1 200px;
+    border-radius: var(--radius-md); /* Reducido de radius-lg */
+    padding: 1.2rem 1.5rem; /* Reducido de 2rem */
+    min-width: 180px; /* Reducido de 210px */
+    flex: 1 1 180px; /* Ajustado */
     display: flex;
     align-items: center;
-    gap: 1.2rem;
+    gap: 1rem; /* Reducido de 1.2rem */
     margin-bottom: 0.5rem;
     transition: box-shadow 0.2s, border 0.2s;
-    border: 1.5px solid transparent;
+    border: 1px solid var(--border-color); /* Borde más sutil */
 }
 
 .stat-card:hover {
@@ -465,11 +476,11 @@ header {
 }
 
 .stat-icon {
-    font-size: 2.3rem;
+    font-size: 1.8rem; /* Reducido de 2.3rem */
     color: var(--primary-light);
     background: var(--background-color);
     border-radius: 50%;
-    padding: 0.6rem;
+    padding: 0.5rem; /* Reducido de 0.6rem */
     box-shadow: var(--shadow-sm);
 }
 
@@ -490,10 +501,11 @@ header {
 }
 
 .stat-value {
-    font-size: 2.1rem;
+    font-size: 1.8rem; /* Reducido de 2.1rem */
     font-weight: 700;
     color: var(--accent-green);
     text-shadow: 0 1px 8px #43e97b22;
+    line-height: 1.2; /* Ajuste de interlineado */
 }
 
 .charts-container {
@@ -506,15 +518,15 @@ header {
 }
 
 .chart-card {
-    flex: 1 1 400px;
-    min-width: 350px;
+    flex: 1 1 380px; /* Ajustado */
+    min-width: 320px; /* Reducido de 350px */
     max-width: 48vw;
     background: var(--card-bg);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
     margin: 0;
-    padding: 2rem 1.5rem;
-    border: 1.5px solid var(--border-color);
+    padding: 1.2rem 1.2rem; /* Reducido de 2rem 1.5rem */
+    border: 1px solid var(--border-color); /* Borde más sutil */
 }
 
 .chart-card h3 {
@@ -528,8 +540,8 @@ header {
 .chart-container {
     position: relative;
     width: 100%;
-    height: 300px; /* Altura fija para los contenedores de gráficos */
-    min-height: 300px;
+    height: 260px; /* Reducido de 300px */
+    min-height: 260px; /* Reducido de 300px */
 }
 
 .chart-container canvas {

@@ -49,11 +49,10 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Simulate loading
             setTimeout(() => {
-                mapPlaceholder.innerHTML = '<p>IP geolocation data loaded</p><p>10 unique countries detected</p>';
+                mapPlaceholder.innerHTML = '<p>Datos de geolocalización cargados</p><p>10 países únicos detectados</p>';
             }, 1500);
         });
     }
-});
 
 // Variables globales
 let lastAlertTimestamp = '';
@@ -181,17 +180,21 @@ function isRelevantAlert(alert) {
     // Verificar si es tráfico interno
     const isInternal = isInternalIP(alert.source_ip);
     
-    // Ignorar tráfico HTTP interno
-    if (isInternal && alert.protocol === 'HTTP') {
-        return false;
-    }
-    
-    // Para otros tipos de tráfico interno, solo mostrar si es crítico
+    // Ignorar TODO el tráfico interno, incluyendo HTTP, SSH, etc.
     if (isInternal) {
-        const criticalTypes = ['SYN Flood', 'ICMP Flood', 'UDP Flood'];
-        if (!criticalTypes.includes(alert.type)) {
+        // Solo permitir tipos de alertas críticas específicas
+        const criticalTypes = ['SYN Flood', 'ICMP Flood', 'UDP Flood', 'DDoS', 'DoS'];
+        const isCritical = criticalTypes.some(type => 
+            alert.type && typeof alert.type === 'string' && 
+            alert.type.toUpperCase().includes(type.toUpperCase())
+        );
+        
+        if (!isCritical) {
+            console.log(`Filtrando alerta interna: ${alert.type || 'Tipo no especificado'} de ${alert.source_ip}`);
             return false;
         }
+        
+        // Reducir severidad para alertas internas críticas
         alert.severity = 'LOW';
     }
     
@@ -420,17 +423,31 @@ function initCharts() {
                 plugins: {
                     legend: { display: false },
                     title: { 
-                        display: true, 
-                        text: 'Distribución por Tipo de Alerta',
-                        font: { size: 16 }
+                        display: false
                     }
                 },
                 scales: {
                     y: { 
                         beginAtZero: true,
                         title: {
-                            display: true,
-                            text: 'Número de Alertas'
+                            display: false
+                        },
+                        ticks: {
+                            display: true
+                        },
+                        grid: {
+                            display: true
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: false
+                        },
+                        ticks: {
+                            display: true
+                        },
+                        grid: {
+                            display: false
                         }
                     }
                 }
@@ -469,10 +486,7 @@ function initCharts() {
                         }
                     },
                     title: { 
-                        display: true, 
-                        text: 'Distribución de Severidad', 
-                        font: { size: 16 },
-                        padding: { bottom: 15 }
+                        display: false
                     }
                 },
                 cutout: '70%',

@@ -134,6 +134,37 @@
     </div>
     <script src="js/main.js"></script>
     <script>
+        // Hacer las funciones disponibles globalmente
+        window.viewAlertDetails = function(alertId) {
+            // Redirigir a la página de detalles de la alerta
+            window.location.href = 'alert-details.php?id=' + alertId;
+        };
+
+        window.blockIP = function(ip) {
+            if (confirm('¿Estás seguro de que deseas bloquear la IP ' + ip + '?')) {
+                fetch('api/block-ip.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'ip=' + encodeURIComponent(ip)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('La IP ' + ip + ' ha sido bloqueada correctamente');
+                        // Recargar la página para ver los cambios
+                        window.location.reload();
+                    } else {
+                        alert('Error al bloquear la IP: ' + (data.message || 'Error desconocido'));
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error al procesar la solicitud');
+                });
+            }
+        };
         // Ya implementado en main.js
         // Mostrar/ocultar filtros
         const toggleBtn = document.getElementById('toggleFiltersBtn');
