@@ -381,51 +381,105 @@ function showNotification(alert) {
             badge.classList.remove('new');
             setTimeout(() => badge.remove(), 2000);
 
-// Actualizar UI
+// Inicializar gráficos
 function initCharts() {
-    // Get chart data from PHP
-    const chartData = <?php echo json_encode($chartData); ?>;
-    const alertTypesData = Object.values(chartData.alert_types);
-    const alertTypesLabels = Object.keys(chartData.alert_types);
-    const timelineLabels = Object.keys(chartData.alerts_by_hour);
-    const timelineData = Object.values(chartData.alerts_by_hour);
-    const severityLabels = Object.keys(chartData.severity_dist);
-    const severityData = Object.values(chartData.severity_dist);
+    // Verificar si los elementos del gráfico existen
+    const alertTypesCtx = document.getElementById('alertTypesChart');
+    const severityCtx = document.getElementById('severityChart');
     
-    // Create alert types pie chart
-    const alertTypesCtx = document.getElementById('alertTypesChart').getContext('2d');
-    
-    // Create severity bar chart
-    const severityCtx = document.getElementById('severityChart').getContext('2d');
-    
-    alertElement.innerHTML = `
-        <div class="alert-header">
-            <span class="alert-severity">${alert.severity}</span>
-            <span class="alert-time">${formatAlertTime(alert.timestamp)}</span>
-        </div>
-        <div class="alert-content">
-            <h3>${alert.type}</h3>
-            <p><strong>IP Fuente:</strong> ${alert.source_ip}</p>
-            <p><strong>Descripción:</strong> ${alert.description}</p>
-        </div>
-    `;
-    
-    // Agregar botón de bloqueo solo para IPs externas
-    if (!isInternalIP(alert.source_ip)) {
-        const blockButton = document.createElement('button');
-        blockButton.className = 'block-button';
-        blockButton.textContent = 'Bloquear IP';
-        blockButton.addEventListener('click', function(e) {
-            e.stopPropagation();
-            if (confirm(`¿Estás seguro de que quieres bloquear la IP ${alert.source_ip}?`)) {
-                blockIP(alert.source_ip);
-            }
-        });
-        alertElement.appendChild(blockButton);
+    if (!alertTypesCtx || !severityCtx) {
+        console.error('No se encontraron los elementos del gráfico');
+        return;
     }
     
-    // Insertar al principio de la lista
-    alertList.insertBefore(alertElement, alertList.firstChild);
+    // Debug: mostrar datos en consola
+    console.log('Inicializando gráficos...');
+    console.log('alertTypesData:', alertTypesData);
+    console.log('severityData:', severityData);
+    
+    // Verificar si hay datos para mostrar
+    if (!alertTypesData || !alertTypesData.labels || alertTypesData.labels.length === 0) {
+        console.warn('No hay datos de tipos de alertas para mostrar');
+    } else {
+        // Gráfico de tipos de alertas
+        new Chart(alertTypesCtx.getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: alertTypesData.labels,
+                datasets: [{
+                    label: 'Número de Alertas',
+                    data: alertTypesData.data,
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    title: { 
+                        display: true, 
+                        text: 'Distribución por Tipo de Alerta',
+                        font: { size: 16 }
+                    }
+                },
+                scales: {
+                    y: { 
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Número de Alertas'
+                        }
+                    }
+                }
+            }
+        });
+    }
+    
+    // Verificar si hay datos de severidad para mostrar
+    if (!severityData || !severityData.labels || severityData.labels.length === 0) {
+        console.warn('No hay datos de severidad para mostrar');
+    } else {
+        // Mapa de colores para la severidad
+        const severityColors = ['#43e97b', '#ffd600', '#d50000'];
+        
+        // Gráfico de distribución de severidad
+        new Chart(severityCtx.getContext('2d'), {
+            type: 'doughnut',
+            data: {
+                labels: severityData.labels,
+                datasets: [{
+                    data: severityData.data,
+                    backgroundColor: severityData.data.map((_, index) => 
+                        severityColors[index % severityColors.length]
+                    ),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { 
+                        position: 'bottom',
+                        labels: {
+                            padding: 20
+                        }
+                    },
+                    title: { 
+                        display: true, 
+                        text: 'Distribución de Severidad', 
+                        font: { size: 16 },
+                        padding: { bottom: 15 }
+                    }
+                },
+                cutout: '70%',
+                radius: '90%'
+            }
+        });
+    }
 }
 
 // Estado de conexión WebSocket
@@ -880,76 +934,7 @@ function updateDashboardStats(stats) {
     }
 }
 
-// Initialize all charts
-function initCharts() {
-    // ALERT TIMELINE (alertas por hora)
-    const ctx1 = document.getElementById('alertTimelineChart').getContext('2d');
-    new Chart(ctx1, {
-        type: 'line',
-        data: {
-            labels: timelineLabels,
-            datasets: [{
-                label: 'Alertas',
-                data: timelineData,
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                backgroundColor: 'rgba(75,192,192,0.2)',
-                tension: 0.2,
-                pointRadius: 3,
-                pointBackgroundColor: 'rgb(75, 192, 192)'
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { display: false },
-                title: { display: true, text: 'Alert Timeline', font: { size: 16 } }
-            },
-            scales: {
-                x: { title: { display: true, text: 'Hora' } },
-                y: { title: { display: true, text: 'Cantidad de Alertas' }, beginAtZero: true }
-            }
-        }
-    });
 
-    // SEVERITY DISTRIBUTION
-    const ctx2 = document.getElementById('severityChart').getContext('2d');
-    // Map severities to colors: 0 (baja)=verde, 1 (media)=amarillo, 2+=rojo
-    const severityColorMap = {
-        0: '#43e97b',   // verde
-        1: '#ffd600',   // amarillo
-        2: '#d50000'    // rojo
-    };
-    // Convierte etiquetas a número y asigna color, por defecto rojo
-    const severityColors = severityLabels.map(l => {
-        const sev = parseInt(l);
-        return severityColorMap.hasOwnProperty(sev) ? severityColorMap[sev] : '#d50000';
-    });
-    // Debug: mostrar por consola datos y colores
-    console.log('severityLabels:', severityLabels);
-    console.log('severityData:', severityData);
-    console.log('severityColors:', severityColors);
-    new Chart(ctx2, {
-        type: 'doughnut',
-        data: {
-            labels: severityLabels,
-            datasets: [{
-                label: 'Severidad',
-                data: severityData,
-                backgroundColor: severityColors
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { position: 'bottom' },
-                title: { display: true, text: 'Distribución de Severidad', font: { size: 16 } }
-            }
-        }
-    });
-}
 
 // Function to update dashboard based on time range
 function updateDashboard() {

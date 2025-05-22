@@ -184,12 +184,9 @@ $chartData = prepareChartDatasets();
 ?>
 
                     <div class="chart-card">
-                        <div class="alert-types-chart-container">
-                            <h3 class="alert-types-chart-title"><i class="fas fa-chart-pie"></i> Tipos de Alertas</h3>
-                            <div class="chart-container" style="min-height: 300px;">
-                                <canvas id="alertTypesChart" style="width: 100%; height: 100%;"></canvas>
-                            </div>
-                            <div class="alert-types-legend" id="alertTypesLegend"></div>
+                        <h3><i class="fas fa-chart-pie"></i> Tipos de Alertas</h3>
+                        <div class="chart-container" style="min-height: 300px;">
+                            <canvas id="alertTypesChart"></canvas>
                         </div>
                     </div>
                     <div class="chart-card">
@@ -269,15 +266,36 @@ $chartData = prepareChartDatasets();
     </div>
     
     <script>
-    // Chart data from PHP
-    const alertTypesData = <?php echo json_encode(array_values($alert_types)); ?>;
-    const alertTypesLabels = <?php echo json_encode(array_keys($alert_types)); ?>;
+    // Datos para los gráficos - Hacerlos globales
+    window.alertTypesData = {
+        labels: <?php echo json_encode(array_keys($alert_types)); ?>,
+        data: <?php echo json_encode(array_values($alert_types)); ?>
+    };
     
-    const timelineLabels = <?php echo json_encode(array_keys($alerts_by_hour)); ?>;
-    const timelineData = <?php echo json_encode(array_values($alerts_by_hour)); ?>;
+    window.timelineData = {
+        labels: <?php echo json_encode(array_keys($alerts_by_hour)); ?>,
+        data: <?php echo json_encode(array_values($alerts_by_hour)); ?>
+    };
     
-    const severityLabels = <?php echo json_encode(array_keys($severity_dist)); ?>;
-    const severityData = <?php echo json_encode(array_values($severity_dist)); ?>;
+    // Preparar etiquetas de severidad
+    window.severityLabels = <?php 
+        $severityNames = ['Baja', 'Media', 'Alta'];
+        $formattedLabels = [];
+        foreach ($severity_dist as $key => $value) {
+            $sevNum = intval($key);
+            $formattedLabels[] = 'Severidad ' . ($severityNames[$sevNum] ?? $key);
+        }
+        echo json_encode($formattedLabels);
+    ?>;
+    
+    window.severityData = {
+        labels: window.severityLabels,
+        data: <?php echo json_encode(array_values($severity_dist)); ?>
+    };
+    
+    // Debug: mostrar datos en consola
+    console.log('alertTypesData:', window.alertTypesData);
+    console.log('severityData:', window.severityData);
     
     <?php
     $last_alert_row = $db = new SQLite3('/var/www/html/database/alerts.db');
@@ -289,6 +307,24 @@ $chartData = prepareChartDatasets();
     }
     ?>
     </script>
-    <script src="js/main.js"></script>
+    <script src="/js/main.clean.js"></script>
+    <script>
+        // Inicializar los gráficos cuando el DOM esté completamente cargado
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM completamente cargado, inicializando gráficos...');
+            // Verificar si Chart.js está cargado
+            if (typeof Chart === 'undefined') {
+                console.error('Chart.js no se ha cargado correctamente');
+                return;
+            }
+            // Verificar si la función initCharts existe
+            if (typeof initCharts === 'function') {
+                console.log('Inicializando gráficos...');
+                initCharts();
+            } else {
+                console.error('La función initCharts no está definida');
+            }
+        });
+    </script>
 </body>
 </html>

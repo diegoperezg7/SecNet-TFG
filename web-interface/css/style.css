@@ -525,6 +525,42 @@ header {
     text-align: center;
 }
 
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 300px; /* Altura fija para los contenedores de gráficos */
+    min-height: 300px;
+}
+
+.chart-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Estilos para mensajes de error y sin datos */
+.chart-container .no-data,
+.chart-container .error {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    text-align: center;
+    color: var(--text-light);
+    padding: 1rem;
+    font-size: 1rem;
+}
+
+.chart-container .error {
+    color: var(--danger-color);
+    font-weight: bold;
+}
+
+/* Asegurar que el contenedor del gráfico tenga posición relativa */
+.chart-container {
+    position: relative;
+}
+
 .top-attackers-section, .recent-alerts {
     width: 100%;
     margin-bottom: 2rem;
