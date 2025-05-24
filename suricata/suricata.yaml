@@ -5,7 +5,7 @@
 vars:
   # Define the network addresses that are considered "home"
   address-groups:
-    HOME_NET: "[192.168.0.0/16,10.0.0.0/8,172.16.0.0/12]"
+    HOME_NET: "!192.168.0.0/16, !10.0.0.0/8, !172.16.0.0/12"
     EXTERNAL_NET: "!$HOME_NET"
 
   # Define the server ports
@@ -24,7 +24,6 @@ outputs:
       filename: eve.json
       types:
         - alert
-        - http
         - dns
         - tls
         - ssh
@@ -67,3 +66,4 @@ af-packet:
     # Si no usas una interfaz específica, usa 'default'
     # interface: default
 
+  - suppress-filename: suppress-http.rules

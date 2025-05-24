@@ -67,8 +67,8 @@ if ($src_ip) {
                 <div class="alert-card-body">
                     <div class="alert-detail-row"><span class="alert-detail-label">Fecha/Hora:</span><span><?= date('d-m-Y H:i', strtotime($alert['timestamp'])) ?></span></div>
                     <div class="alert-detail-row"><span class="alert-detail-label">IP Origen:</span><span><?= htmlspecialchars($alert['src_ip']) ?></span></div>
-                    <div class="alert-detail-row"><span class="alert-detail-label">IP Destino:</span><span><?= htmlspecialchars($alert['dst_ip']) ?></span></div>
-                    <div class="alert-detail-row"><span class="alert-detail-label">Puerto:</span><span><?= htmlspecialchars($alert['dst_port']) ?></span></div>
+                    <div class="alert-detail-row"><span class="alert-detail-label">IP Destino:</span><span><?= htmlspecialchars($alert['dest_ip']) ?></span></div>
+                    <div class="alert-detail-row"><span class="alert-detail-label">Puerto:</span><span><?= !empty($alert['dest_port']) ? htmlspecialchars($alert['dest_port']) : 'N/A' ?></span></div>
                     <div class="alert-detail-row"><span class="alert-detail-label">Protocolo:</span><span><?= htmlspecialchars($alert['protocol']) ?></span></div>
                     <div class="alert-detail-row"><span class="alert-detail-label">Mensaje:</span><span><?= htmlspecialchars($alert['alert_message']) ?></span></div>
                     <div class="alert-detail-row"><span class="alert-detail-label">Severidad:</span><span class="severity-badge severity-<?= (int)$alert['severity'] ?>"><?= htmlspecialchars($alert['severity']) ?></span></div>
@@ -91,7 +91,7 @@ if ($src_ip) {
                             <td><?= date('d-m-Y H:i', strtotime($h['timestamp'])) ?></td>
                             <td><?= htmlspecialchars($h['alert_message']) ?></td>
                             <td><span class="severity-badge severity-<?= (int)$h['severity'] ?>"><?= htmlspecialchars($h['severity']) ?></span></td>
-                            <td><?= htmlspecialchars($h['dst_ip']) ?>:<?= htmlspecialchars($h['dst_port']) ?></td>
+                            <td><?= htmlspecialchars($h['dest_ip']) ?><?= !empty($h['dest_port']) ? ':' . htmlspecialchars($h['dest_port']) : '' ?></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>

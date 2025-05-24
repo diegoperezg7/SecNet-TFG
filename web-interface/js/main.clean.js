@@ -69,27 +69,43 @@ function initCharts() {
         }
     } else {
         console.log('Creando gráfico de severidad con datos:', window.severityData);
-        // Mapa de colores para la severidad
-        // 0: Baja (verde), 1: Media (amarillo), 2: Alta (rojo)
-        const severityColors = {
-            '0': '#43e97b',  // Baja - Verde
-            '1': '#ffd600',  // Media - Amarillo
-            '2': '#d50000',  // Alta - Rojo
-            '3': '#d50000'   // Crítica - Rojo (en caso de que haya nivel 3)
+        // Mapa de colores y etiquetas para la severidad
+        const severityConfig = {
+            '1': { 
+                color: '#00ffae',
+                label: 'Baja (1)'
+            },
+            '2': {
+                color: '#ffd600',
+                label: 'Media (2)'
+            },
+            '3': {
+                color: '#d50000',
+                label: 'Alta (3)'
+            },
+            '4': {
+                color: '#d50000',
+                label: 'Crítica (4)'
+            }
         };
         
         // Gráfico de distribución de severidad
         new Chart(severityCtx.getContext('2d'), {
             type: 'doughnut',
             data: {
-                labels: window.severityData.labels,
+                labels: window.severityData.labels.map((_, index) => {
+                    const severity = Math.min(parseInt(window.severityData.labels[index].match(/\d+/)?.[0] || '1'), 4).toString();
+                    return severityConfig[severity]?.label || `Severidad ${severity}`;
+                }),
                 datasets: [{
                     data: window.severityData.data,
                     backgroundColor: window.severityData.labels.map(label => {
                         // Extraer el número de severidad de la etiqueta (ej: 'Severidad 1' -> 1)
                         const severityMatch = label.match(/\d+/);
-                        const severity = severityMatch ? severityMatch[0] : '1'; // Por defecto media si no se puede determinar
-                        return severityColors[severity] || '#ffd600'; // Amarillo por defecto
+                        let severity = severityMatch ? Math.min(parseInt(severityMatch[0]), 4).toString() : '1';
+                        // Si la severidad es 0, la convertimos a 1 (baja)
+                        if (severity === '0') severity = '1';
+                        return severityConfig[severity]?.color || '#ffd600'; // Amarillo por defecto
                     }),
                     borderWidth: 1
                 }]
@@ -101,8 +117,25 @@ function initCharts() {
                     legend: { 
                         position: 'bottom',
                         labels: {
-                            padding: 20,
-                            color: '#e0e6ed' // Color del texto de la leyenda para mejor contraste
+                            padding: 15,
+                            color: '#e0e6ed', // Color del texto de la leyenda
+                            font: {
+                                size: 13,
+                                weight: 'bold'
+                            },
+                            usePointStyle: true,
+                            pointStyle: 'circle',
+                            padding: 20
+                        },
+                        title: {
+                            display: true,
+                            text: 'Niveles de Severidad',
+                            color: '#e0e6ed',
+                            padding: { top: 10, bottom: 5 },
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
                         }
                     },
                     title: { 

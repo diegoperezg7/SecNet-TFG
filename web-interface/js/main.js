@@ -11,7 +11,8 @@ function requestNotificationPermissionLoop() {
 document.addEventListener('DOMContentLoaded', function() {
     // Solicitar permiso de notificaciones web de forma obligatoria
     requestNotificationPermissionLoop();
-    // Initialize charts
+    
+    // Inicializar gráficos
     initCharts();
     
     // Inicializar sistema de alertas en tiempo real (silenciosamente)
@@ -20,39 +21,41 @@ document.addEventListener('DOMContentLoaded', function() {
     // Configurar controles de notificaciones
     setupNotificationControls();
     
-    // Configurar botón de configuración
-    // Confirm before blocking IP
+    // Configurar botón de bloqueo de IP
     const blockButtons = document.querySelectorAll('.block-button');
     blockButtons.forEach(button => {
         button.addEventListener('click', function(e) {
-            if (!confirm('Are you sure you want to block this IP address?')) {
+            if (!confirm('¿Está seguro de que desea bloquear esta dirección IP?')) {
                 e.preventDefault();
             }
         });
     });
 
-    // Add timestamp to show when page was last refreshed
+    // Agregar marca de tiempo de actualización
     const footer = document.querySelector('footer');
     if (footer) {
         const timestamp = document.createElement('p');
         timestamp.classList.add('refresh-time');
-        timestamp.textContent = 'Last refreshed: ' + new Date().toLocaleTimeString();
+        timestamp.textContent = 'Última actualización: ' + new Date().toLocaleTimeString();
         footer.prepend(timestamp);
     }
     
-    // Map placeholder button
+    // Botón de carga de mapa
     const loadMapBtn = document.getElementById('loadMapBtn');
     if (loadMapBtn) {
         loadMapBtn.addEventListener('click', function() {
             const mapPlaceholder = document.getElementById('mapPlaceholder');
-            mapPlaceholder.innerHTML = '<p>Loading map data...</p>';
-            
-            // Simulate loading
-            setTimeout(() => {
-                mapPlaceholder.innerHTML = '<p>Datos de geolocalización cargados</p><p>10 países únicos detectados</p>';
-            }, 1500);
+            if (mapPlaceholder) {
+                mapPlaceholder.innerHTML = '<p>Cargando datos del mapa...</p>';
+                
+                // Simular carga
+                setTimeout(() => {
+                    mapPlaceholder.innerHTML = '<p>Datos de geolocalización cargados</p><p>10 países únicos detectados</p>';
+                }, 1500);
+            }
         });
     }
+});
 
 // Variables globales
 let lastAlertTimestamp = '';
@@ -194,7 +197,8 @@ function isRelevantAlert(alert) {
             return false;
         }
         
-        // Reducir severidad para alertas internas críticas
+        // Marcar como crítica y reducir severidad para alertas internas
+        alert.is_critical = true;
         alert.severity = 'LOW';
     }
     
@@ -284,21 +288,32 @@ async function checkForNewAlerts() {
         
         const alerts = await response.json();
         
-        // Procesar cada alerta
-        alerts.forEach(alert => {
-            if (!isRelevantAlert(alert)) return;
+        // Verificar si hay alertas nuevas
+        if (alerts.length > 0) {
+            console.log('Nuevas alertas recibidas:', alerts.length);
             
-            // Actualizar timestamp
-            lastAlertTimestamp = alert.timestamp;
-            
-            // Mostrar notificación
-            if (notificationState.enabled) {
-                showNotification(alert);
-            }
-            
-            // Actualizar UI
-            updateAlertUI(alert);
-        });
+            // Procesar cada alerta
+            alerts.forEach(alert => {
+                // Verificar si es una alerta relevante
+                if (!isRelevantAlert(alert)) {
+                    console.log('Alerta filtrada:', alert);
+                    return;
+                }
+                
+                // Actualizar timestamp de la última alerta
+                lastAlertTimestamp = alert.timestamp;
+                
+                console.log('Mostrando notificación para alerta:', alert);
+                
+                // Mostrar notificación si está habilitado y no es tráfico interno no crítico
+                if (notificationState.enabled) {
+                    showNotification(alert);
+                }
+                
+                // Actualizar la interfaz de usuario
+                updateAlertUI(alert);
+            });
+        }
         
         // Resetear intentos fallidos
         retryAttempts = 0;
@@ -312,6 +327,13 @@ async function checkForNewAlerts() {
         if (retryAttempts >= MAX_RETRY_ATTEMPTS) {
             clearInterval(window.realtimeInterval);
             console.error('Demasiados intentos fallidos. Deteniendo polling.');
+            
+            // Intentar reconectar después de un tiempo
+            setTimeout(() => {
+                console.log('Intentando reconectar...');
+                retryAttempts = 0;
+                window.realtimeInterval = setInterval(checkForNewAlerts, 10000);
+            }, 60000); // Reintentar después de 1 minuto
         }
     }
 }
@@ -319,25 +341,37 @@ async function checkForNewAlerts() {
 // Mostrar notificación
 function showNotification(alert) {
     // Verificar permisos de notificación
-    if (!Notification.permission === 'granted') return;
+    if (Notification.permission !== 'granted') {
+        console.log('Permisos de notificación no concedidos');
+        return;
+    }
     
-    // Determinar severidad y configuración de notificación
-    const severity = determineAlertSeverity(alert.source_ip, alert.timestamp);
-    const isHighPriority = severity === 'HIGH';
+    // Determinar si es tráfico interno
     const isInternalTraffic = isInternalIP(alert.source_ip);
+    
+    // Para tráfico interno, solo mostrar notificaciones en el dashboard
+    if (isInternalTraffic && !alert.is_critical) {
+        console.log('Notificación de tráfico interno silenciada:', alert);
+        return;
+    }
+    
+    // Determinar severidad
+    const severity = determineAlertSeverity(alert.source_ip, alert.timestamp);
+    const isHighPriority = severity === 'HIGH' || alert.severity >= 3;
     
     // Configurar opciones de notificación
     const options = {
         body: `
-            ${alert.type}\n
+            ${alert.type || 'Alerta de seguridad'}\n
             IP: ${alert.source_ip}\n
-            ${alert.description}
+            ${alert.description || 'Sin descripción'}
         `.trim(),
         icon: 'images/notification-icon.png',
-        tag: 'security-alert',
-        requireInteraction: true,
-        silent: !isHighPriority || isInternalTraffic,
+        tag: `alert-${alert.id || Date.now()}`,
+        requireInteraction: isHighPriority && !isInternalTraffic,
+        silent: isInternalTraffic, // Silenciar notificaciones de tráfico interno
         data: {
+            id: alert.id,
             ip: alert.source_ip,
             timestamp: alert.timestamp,
             severity: severity,
@@ -345,44 +379,55 @@ function showNotification(alert) {
         }
     };
     
-    // Crear y mostrar notificación
-    const notification = new Notification(`¡Alerta ${severity} de Seguridad!`, options);
-    
-    // Añadir evento click para abrir detalles de la alerta
-    notification.onclick = function() {
-        window.open(`/alert-details.php?id=${alert.id}`, '_blank');
-    };
-    
-    // Reproducir sonido según severidad
-    if (notificationState.soundEnabled) {
-        const soundConfig = SOUND_CONFIG[severity] || SOUND_CONFIG.LOW;
-        const audio = new Audio(soundConfig.src);
-        audio.volume = soundConfig.volume;
+    try {
+        // Crear y mostrar notificación
+        const notification = new Notification(
+            isInternalTraffic ? 'Alerta Interna' : `¡Alerta ${severity} de Seguridad!`,
+            options
+        );
         
-        // Aumentar volumen para alertas de alta prioridad
+        // Añadir evento click para abrir detalles de la alerta si tiene ID
+        if (alert.id) {
+            notification.onclick = function() {
+                window.focus();
+                window.open(`/alert-details.php?id=${alert.id}`, '_blank');
+            };
+        }
+        
+        // Reproducir sonido según severidad (solo para tráfico externo o crítico interno)
+        if (notificationState.soundEnabled && (!isInternalTraffic || isHighPriority)) {
+            const soundConfig = SOUND_CONFIG[severity] || SOUND_CONFIG.LOW;
+            const audio = new Audio(soundConfig.src);
+            audio.volume = soundConfig.volume;
+            
+            // Ajustar volumen
+            if (isHighPriority) {
+                audio.volume = Math.min(1.0, audio.volume * 1.5);
+            }
+            if (isInternalTraffic) {
+                audio.volume *= 0.3; // Volumen más bajo para tráfico interno
+            }
+            
+            audio.play().catch(error => console.error('Error al reproducir sonido:', error));
+        }
+        
+        // Añadir badge de notificación solo para alertas críticas externas
         if (isHighPriority && !isInternalTraffic) {
-            audio.volume = Math.min(1.0, audio.volume * 1.5);
+            const badge = document.createElement('div');
+            badge.className = 'notification-badge new';
+            badge.textContent = 'ALERTA CRÍTICA';
+            document.body.appendChild(badge);
+            
+            // Eliminar badge después de 5 segundos
+            setTimeout(() => {
+                badge.classList.remove('new');
+                setTimeout(() => badge.remove(), 2000);
+            }, 5000);
         }
-        
-        // Reducir volumen para tráfico interno
-        if (isInternalTraffic) {
-            audio.volume *= 0.5;
-        }
-        
-        audio.play().catch(error => console.error('Error al reproducir sonido:', error));
+    } catch (error) {
+        console.error('Error al mostrar notificación:', error);
     }
-    
-    // Añadir badge de notificación solo para alertas críticas externas
-    if (isHighPriority && !isInternalTraffic) {
-        const badge = document.createElement('div');
-        badge.className = 'notification-badge new';
-        badge.textContent = 'ALERTA CRÍTICA';
-        document.body.appendChild(badge);
-        
-        // Eliminar badge después de 5 segundos
-        setTimeout(() => {
-            badge.classList.remove('new');
-            setTimeout(() => badge.remove(), 2000);
+}
 
 // Inicializar gráficos
 function initCharts() {
@@ -459,19 +504,48 @@ function initCharts() {
     if (!severityData || !severityData.labels || severityData.labels.length === 0) {
         console.warn('No hay datos de severidad para mostrar');
     } else {
-        // Mapa de colores para la severidad
-        const severityColors = ['#43e97b', '#ffd600', '#d50000'];
+        // Configuración de severidad
+        const severityConfig = {
+            '1': { 
+                color: '#00ffae',
+                label: 'Baja (1)'
+            },
+            '2': {
+                color: '#ffd600',
+                label: 'Media (2)'
+            },
+            '3': {
+                color: '#d50000',
+                label: 'Alta (3)'
+            },
+            '4': {
+                color: '#d50000',
+                label: 'Crítica (4)'
+            }
+        };
+        
+        // Procesar etiquetas y colores
+        const labels = [];
+        const backgroundColors = [];
+        
+        severityData.labels.forEach((label, index) => {
+            const severityMatch = label.match(/\d+/);
+            let severity = severityMatch ? Math.min(parseInt(severityMatch[0]), 4).toString() : '1';
+            if (severity === '0') severity = '1';
+            
+            const config = severityConfig[severity] || severityConfig['1'];
+            labels.push(config.label);
+            backgroundColors.push(config.color);
+        });
         
         // Gráfico de distribución de severidad
         new Chart(severityCtx.getContext('2d'), {
             type: 'doughnut',
             data: {
-                labels: severityData.labels,
+                labels: labels,
                 datasets: [{
                     data: severityData.data,
-                    backgroundColor: severityData.data.map((_, index) => 
-                        severityColors[index % severityColors.length]
-                    ),
+                    backgroundColor: backgroundColors,
                     borderWidth: 1
                 }]
             },
@@ -482,7 +556,24 @@ function initCharts() {
                     legend: { 
                         position: 'bottom',
                         labels: {
+                            color: '#e0e6ed',
+                            font: {
+                                size: 13,
+                                weight: 'bold'
+                            },
+                            usePointStyle: true,
+                            pointStyle: 'circle',
                             padding: 20
+                        },
+                        title: {
+                            display: true,
+                            text: 'Niveles de Severidad',
+                            color: '#e0e6ed',
+                            padding: { top: 10, bottom: 5 },
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
                         }
                     },
                     title: { 
@@ -543,27 +634,75 @@ const Pusher = window.Pusher;
 
 // Inicializar sistema de alertas en tiempo real
 function initRealtimeAlerts() {
-    // Inicializar Pusher
-    const pusher = new Pusher('your_app_key', {
-        cluster: 'mt1',
-        encrypted: true
-    });
+    console.log('Inicializando sistema de alertas en tiempo real...');
+    
+    // Verificar si Pusher está disponible
+    if (typeof Pusher === 'undefined') {
+        console.error('Error: Pusher no está cargado correctamente');
+        // Usar polling como respaldo
+        setInterval(checkForNewAlerts, 10000); // Verificar cada 10 segundos
+        return;
+    }
+    
+    try {
+        // Inicializar Pusher con la configuración correcta
+        const pusher = new Pusher('your_app_key', {
+            cluster: 'mt1',
+            encrypted: true,
+            authEndpoint: '/pusher/auth', // Asegúrate de que esta ruta esté configurada en tu backend
+            auth: {
+                headers: {
+                    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
+                }
+            }
+        });
 
-    // Suscribirse al canal de seguridad
-    const channel = pusher.subscribe('security-channel');
+        console.log('Conectando al canal de seguridad...');
+        
+        // Suscribirse al canal de seguridad
+        const channel = pusher.subscribe('security-channel');
 
-    // Escuchar eventos de nuevas alertas
-    channel.bind('new-alert', function(alert) {
-        if (isRelevantAlert(alert)) {
-            showNotification(alert);
-            updateAlertUI(alert);
-        }
-    });
+        // Escuchar eventos de nuevas alertas
+        channel.bind('new-alert', function(alert) {
+            console.log('Nueva alerta recibida:', alert);
+            if (isRelevantAlert(alert)) {
+                console.log('Mostrando notificación para alerta relevante');
+                showNotification(alert);
+                showAlertNotification(alert); // Usar la función de notificación mejorada
+                updateAlertUI(alert);
+            } else {
+                console.log('Alerta filtrada por reglas de relevancia');
+            }
+        });
 
-    // Manejar errores
-    channel.bind('pusher:subscription_error', function(error) {
-        console.error('Error al suscribirse:', error);
-    });
+        // Manejar eventos de conexión
+        channel.bind('pusher:subscription_succeeded', function() {
+            console.log('Suscripción al canal de seguridad exitosa');
+        });
+
+        // Manejar errores
+        channel.bind('pusher:subscription_error', function(error) {
+            console.error('Error al suscribirse al canal de seguridad:', error);
+            console.log('Intentando reconexión en 5 segundos...');
+            setTimeout(initRealtimeAlerts, 5000); // Reintentar después de 5 segundos
+        });
+
+        // Manejar desconexión
+        pusher.connection.bind('disconnected', function() {
+            console.warn('Desconectado del servidor de Pusher');
+        });
+
+        // Manejar reconexión
+        pusher.connection.bind('connected', function() {
+            console.log('Reconectado al servidor de Pusher');
+        });
+
+    } catch (error) {
+        console.error('Error al inicializar el sistema de alertas en tiempo real:', error);
+        // Usar polling como respaldo
+        console.log('Usando polling como respaldo...');
+        setInterval(checkForNewAlerts, 10000); // Verificar cada 10 segundos
+    }
 
     // Iniciar resumen diario
     setupDailySummary();
@@ -678,55 +817,77 @@ function updateDashboardStats(stats) {
 
 // Verificar nuevas alertas
 function checkForNewAlerts() {
+    console.log('Verificando nuevas alertas...');
+    
     // Realizar petición AJAX para verificar nuevas alertas
     fetch(`api/check-alerts.php?last_timestamp=${encodeURIComponent(lastAlertTimestamp)}`)
         .then(response => {
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error(`Error HTTP: ${response.status}`);
             }
             return response.json();
         })
         .then(data => {
             retryAttempts = 0; // Resetear intentos fallidos
             
-            if (data.has_new_alerts) {
-                // Actualizar el timestamp para la próxima verificación
-                lastAlertTimestamp = data.latest_timestamp;
+            console.log('Respuesta del servidor:', data);
+            
+            if (data.has_new_alerts && data.alerts && data.alerts.length > 0) {
+                console.log(`Se encontraron ${data.alerts.length} nuevas alertas`);
                 
-                // Mostrar notificaciones para nuevas alertas
-                if (Array.isArray(data.alerts)) {
-                    data.alerts.forEach(alert => {
-                        // Reproducir sonido de alerta
-                        const alertSound = document.getElementById('alertSound');
-                        if (alertSound) {
-                            alertSound.currentTime = 0;
-                            alertSound.play();
-                        }
-                        
-                        // Mostrar notificación web
-                        showWebNotification(alert);
-                        
-                        // Mostrar notificación visual en el dashboard
-                        showDashboardNotification(alert);
-                    });
+                // Actualizar el último timestamp conocido
+                if (data.latest_timestamp) {
+                    lastAlertTimestamp = data.latest_timestamp;
+                    console.log('Nuevo timestamp de última alerta:', lastAlertTimestamp);
                 }
                 
-                // Actualizar estadísticas en el dashboard
-                if (typeof updateDashboardStats === 'function' && data.stats) {
+                // Procesar cada nueva alerta
+                data.alerts.forEach(alert => {
+                    try {
+                        console.log('Procesando alerta:', alert);
+                        if (isRelevantAlert(alert)) {
+                            console.log('Alerta relevante, mostrando notificación...');
+                            showNotification(alert);
+                            showAlertNotification(alert);
+                            updateAlertUI(alert);
+                        } else {
+                            console.log('Alerta filtrada por reglas de relevancia');
+                        }
+                    } catch (error) {
+                        console.error('Error al procesar alerta:', error, alert);
+                    }
+                });
+                
+                // Actualizar estadísticas del dashboard
+                if (data.stats) {
+                    console.log('Actualizando estadísticas:', data.stats);
                     updateDashboardStats(data.stats);
+                }
+            } else {
+                console.log('No hay nuevas alertas');
+                if (data.latest_timestamp) {
+                    lastAlertTimestamp = data.latest_timestamp;
+                    console.log('Actualizado timestamp de última alerta:', lastAlertTimestamp);
                 }
             }
         })
         .catch(error => {
-            console.error('Error checking for new alerts:', error);
-            retryAttempts++;
+            console.error('Error al verificar nuevas alertas:', error);
             
-            // Si hay demasiados errores, aumentar el intervalo de polling
-            if (retryAttempts >= MAX_RETRY_ATTEMPTS) {
-                const newInterval = INITIAL_POLL_INTERVAL * retryAttempts;
-                console.log(`Too many errors. Increasing polling interval to ${newInterval}ms`);
-                if (window.realtimeInterval) clearInterval(window.realtimeInterval);
-                window.realtimeInterval = setInterval(checkForNewAlerts, newInterval);
+            // Reintentar con retroceso exponencial
+            retryAttempts++;
+            if (retryAttempts <= MAX_RETRY_ATTEMPTS) {
+                const delay = Math.min(1000 * Math.pow(2, retryAttempts), 30000); // Hasta 30 segundos
+                console.log(`Reintentando en ${delay}ms... (Intento ${retryAttempts}/${MAX_RETRY_ATTEMPTS})`);
+                setTimeout(checkForNewAlerts, delay);
+            } else {
+                console.error('Se agotaron los intentos de reconexión');
+                // Intentar de nuevo después de un tiempo más largo
+                setTimeout(() => {
+                    console.log('Reiniciando verificación de alertas...');
+                    retryAttempts = 0;
+                    checkForNewAlerts();
+                }, 60000); // Esperar 1 minuto antes de reintentar
             }
         });
 }
@@ -735,16 +896,16 @@ function checkForNewAlerts() {
 function showWebNotification(alert) {
     if (Notification.permission === 'granted') {
         const severityText = alert.severity >= 2 ? 'ALTA' : (alert.severity == 1 ? 'MEDIA' : 'BAJA');
-        const notif = new Notification('Nueva alerta de seguridad', {
-            body: `[${severityText}] ${alert.alert_message}\nOrigen: ${alert.src_ip}`,
-            icon: '/assets/logo.png',
-            tag: 'secnet-alert',
-            requireInteraction: true
+        const notification = new Notification(`Alerta de Seguridad (${severityText})`, {
+            body: `${alert.alert_message}\nIP: ${alert.src_ip}\nHora: ${new Date(alert.timestamp).toLocaleTimeString()}`,
+            icon: '/images/notification-icon.png',
+            tag: 'security-alert'
         });
-        
-        // Cuando se hace click en la notificación, ir a la página de detalles
-        notif.onclick = function() {
-            window.location.href = `alert-details.php?id=${alert.id}`;
+
+        notification.onclick = function() {
+            window.focus();
+            // Aquí podrías redirigir a una página de detalles de la alerta
+            // window.location.href = `/alert-details.php?id=${alert.id}`;
         };
     }
 }

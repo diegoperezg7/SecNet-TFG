@@ -14,19 +14,16 @@ alert dns $HOME_NET any -> any any (msg:"ET MALWARE DNS Tunneling Attempt"; dns.
 alert dns $HOME_NET any -> any any (msg:"ET MALWARE High DNS Query Volume"; dns.query; threshold:type threshold, track by_src, count 50, seconds 60; classtype:trojan-activity; sid:1000014; rev:1;)
 
 # Web application attacks
-alert http any any -> $HOME_NET any (msg:"ET WEB_SERVER PHP Remote File Inclusion Attempt"; flow:to_server,established; http.uri; content:".php?"; nocase; content:"=http"; nocase; classtype:web-application-attack; sid:1000003; rev:1;)
-alert http any any -> $HOME_NET any (msg:"ET WEB_SERVER SQL Injection Attempt"; flow:to_server,established; http.uri; content:"'"; pcre:"/(\%27)|(\')|(\-\-)|(%23)|(#)/i"; classtype:web-application-attack; sid:1000004; rev:1;)
+# alert http any any -> $HOME_NET any (msg:"ET WEB_SERVER PHP Remote File Inclusion Attempt"; flow:to_server,established; http.uri; content:".php?"; nocase; content:"=http"; nocase; classtype:web-application-attack; sid:1000003; rev:1;)
+# alert http any any -> $HOME_NET any (msg:"ET WEB_SERVER SQL Injection Attempt"; flow:to_server,established; http.uri; content:"'"; pcre:"/(\%27)|(\')|(\-\-)|(%23)|(#)/i"; classtype:web-application-attack; sid:1000004; rev:1;)
 
 # File uploads and downloads
-alert http any any -> $HOME_NET any (msg:"ET MALWARE Suspicious EXE Download"; flow:to_server,established; http.uri; content:".exe"; nocase; classtype:trojan-activity; sid:1000005; rev:1;)
-alert http any any -> $HOME_NET any (msg:"ET FILE_UPLOAD Suspicious ZIP Download"; flow:to_server,established; http.uri; content:".zip"; nocase; classtype:trojan-activity; sid:1000015; rev:1;)
-alert http any any -> $HOME_NET any (msg:"ET FILE_UPLOAD Suspicious RAR Download"; flow:to_server,established; http.uri; content:".rar"; nocase; classtype:trojan-activity; sid:1000016; rev:1;)
+# alert http any any -> $HOME_NET any (msg:"ET MALWARE Suspicious EXE Download"; flow:to_server,established; http.uri; content:".exe"; nocase; classtype:trojan-activity; sid:1000005; rev:1;)
+# alert http any any -> $HOME_NET any (msg:"ET FILE_UPLOAD Suspicious ZIP Download"; flow:to_server,established; http.uri; content:".zip"; nocase; classtype:trojan-activity; sid:1000015; rev:1;)
+# alert http any any -> $HOME_NET any (msg:"ET FILE_UPLOAD Suspicious RAR Download"; flow:to_server,established; http.uri; content:".rar"; nocase; classtype:trojan-activity; sid:1000016; rev:1;)
 
 # Basic rules for testing
 alert icmp any any -> $HOME_NET any (msg:"ICMP Ping"; sid:1000006; rev:1;)
-alert tcp any any -> $HOME_NET 80 (msg:"HTTP Traffic"; sid:1000007; rev:1;)
-alert tcp any any -> $HOME_NET 443 (msg:"HTTPS Traffic"; sid:1000008; rev:1;)
-
 # Potential port scan detection
 alert tcp any any -> $HOME_NET any (msg:"Potential Port Scan"; flags:S; threshold:type threshold, track by_src, count 5, seconds 60; sid:1000009; rev:1;)
 
@@ -48,9 +45,9 @@ alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB/CIFS Directory Traversal Att
 alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB/CIFS Buffer Overflow Attempt"; flow:to_server,established; content:"%u"; nocase; classtype:attempted-admin; sid:1000028; rev:1;)
 
 # Web application attacks adicionales
-alert http any any -> $HOME_NET any (msg:"ET WEB_SERVER Directory Traversal Attempt"; flow:to_server,established; http.uri; content:"../"; nocase; classtype:web-application-attack; sid:1000029; rev:1;)
-alert http any any -> $HOME_NET any (msg:"ET WEB_SERVER XSS Attempt"; flow:to_server,established; http.uri; content:"<script"; nocase; classtype:web-application-attack; sid:1000030; rev:1;)
-alert http any any -> $HOME_NET any (msg:"ET WEB_SERVER Command Injection Attempt"; flow:to_server,established; http.uri; content:"|26 26 26 26|"; classtype:web-application-attack; sid:1000031; rev:1;)
+# alert http any any -> $HOME_NET any (msg:"ET WEB_SERVER Directory Traversal Attempt"; flow:to_server,established; http.uri; content:"../"; nocase; classtype:web-application-attack; sid:1000029; rev:1;)
+# alert http any any -> $HOME_NET any (msg:"ET WEB_SERVER XSS Attempt"; flow:to_server,established; http.uri; content:"<script"; nocase; classtype:web-application-attack; sid:1000030; rev:1;)
+# alert http any any -> $HOME_NET any (msg:"ET WEB_SERVER Command Injection Attempt"; flow:to_server,established; http.uri; content:"|26 26 26 26|"; classtype:web-application-attack; sid:1000031; rev:1;)
 
 # SSH attacks adicionales
 alert tcp any any -> $HOME_NET 22 (msg:"ET SSH SSH Protocol Version Mismatch"; flow:to_server,established; content:"SSH-2.0-"; nocase; classtype:attempted-admin; sid:1000032; rev:1;)
@@ -64,7 +61,7 @@ alert tcp any any -> $HOME_NET 21 (msg:"ET FTP FTP Directory Traversal Attempt";
 alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Proxy Detection"; flow:to_server,established; content:"PROXY"; nocase; classtype:attempted-admin; sid:1000036; rev:1;)
 
 # Windows Update Exploits
-alert http any any -> $HOME_NET any (msg:"ET WINDOWS Windows Update Exploit Attempt"; flow:to_server,established; http.uri; content:"/WindowsUpdate"; nocase; classtype:attempted-admin; sid:1000037; rev:1;)
+# alert http any any -> $HOME_NET any (msg:"ET WINDOWS Windows Update Exploit Attempt"; flow:to_server,established; http.uri; content:"/WindowsUpdate"; nocase; classtype:attempted-admin; sid:1000037; rev:1;)
 
 # SMB Enumeration
 alert tcp any any -> $HOME_NET 445 (msg:"ET SMB SMB Enumeration Attempt"; flow:to_server,established; content:"\x00\x00\x00\x00"; depth:4; classtype:attempted-admin; sid:1000038; rev:1;)

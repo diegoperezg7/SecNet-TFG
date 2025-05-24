@@ -143,6 +143,23 @@ def process_alert(alert_data):
         timestamp = alert_data.get('timestamp', datetime.now().isoformat())
         src_ip = alert_data.get('src_ip', 'unknown')
         dest_ip = alert_data.get('dest_ip', 'unknown')
+        # Extraer el puerto de destino si está presente
+        dest_port = None
+        if 'dest_port' in alert_data and alert_data['dest_port']:
+            try:
+                dest_port = int(alert_data['dest_port'])
+            except (ValueError, TypeError):
+                dest_port = None
+        elif ':' in str(dest_ip):
+            # Si el puerto está en dest_ip (ejemplo: 192.168.1.1:80)
+            parts = str(dest_ip).split(':')
+            if len(parts) > 1:
+                dest_ip = parts[0]
+                try:
+                    dest_port = int(parts[1])
+                except (ValueError, IndexError):
+                    dest_port = None
+        
         alert_message = alert_data.get('alert', {}).get('signature', 'Unknown alert')
         severity = alert_data.get('alert', {}).get('severity', 1)
         protocol = alert_data.get('proto', 'unknown')
@@ -166,8 +183,8 @@ def process_alert(alert_data):
         conn = sqlite3.connect(DB_PATH)
         cursor = conn.cursor()
         cursor.execute(
-            "INSERT INTO alerts (timestamp, src_ip, dest_ip, alert_message, severity, protocol, action_taken, raw_data) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-            (timestamp, src_ip, dest_ip, alert_message, severity, protocol, action_taken, json.dumps(alert_data))
+            "INSERT INTO alerts (timestamp, src_ip, dest_ip, dest_port, alert_message, severity, protocol, action_taken, raw_data) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            (timestamp, src_ip, dest_ip, dest_port, alert_message, severity, protocol, action_taken, json.dumps(alert_data))
         )
         conn.commit()
         conn.close()

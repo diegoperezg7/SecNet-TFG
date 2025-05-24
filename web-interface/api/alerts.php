@@ -4,25 +4,26 @@ require_once '../includes/db.php';
 
 // Función para validar IP
 function isValidIP($ip) {
-    if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) === false) {
-        return false;
-    }
-    
-    // Ignorar IPs internas
-    $internalRanges = array(
+    return filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) !== false;
+}
+
+// Función para verificar si una IP es interna
+function isInternalIP($ip) {
+    // IPs internas RFC1918
+    $internalRanges = [
         '127.0.0.0/8',
         '10.0.0.0/8',
         '172.16.0.0/12',
         '192.168.0.0/16'
-    );
+    ];
     
     foreach ($internalRanges as $range) {
         if (ip_in_range($ip, $range)) {
-            return false;
+            return true;
         }
     }
     
-    return true;
+    return false;
 }
 
 // Función para verificar si una IP está en un rango
@@ -57,41 +58,55 @@ try {
     $alerts = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
     // Filtrar y procesar alertas
-    $filteredAlerts = array_filter($alerts, function($alert) {
+    $filteredAlerts = [];
+    
+    foreach ($alerts as $alert) {
         // Validar IP
         if (!isValidIP($alert['source_ip'])) {
-            return false;
+            continue;
         }
         
-        // Ignorar tráfico HTTP interno
-        if (isInternalIP($alert['source_ip']) && $alert['protocol'] === 'HTTP') {
-            return false;
-        }
+        $isInternal = isInternalIP($alert['source_ip']);
         
-        // Para otros tipos de tráfico interno, solo mantener los críticos
-        if (isInternalIP($alert['source_ip'])) {
-            $criticalTypes = ['SYN Flood', 'ICMP Flood', 'UDP Flood'];
-            if (!in_array($alert['type'], $criticalTypes)) {
-                return false;
+        // Para tráfico interno, solo mantener alertas críticas
+        if ($isInternal) {
+            $criticalTypes = ['SYN Flood', 'ICMP Flood', 'UDP Flood', 'DDoS', 'DoS'];
+            $isCritical = false;
+            
+            // Verificar si es una alerta crítica
+            foreach ($criticalTypes as $type) {
+                if (stripos($alert['type'] ?? '', $type) !== false) {
+                    $isCritical = true;
+                    break;
+                }
             }
-            $alert['severity'] = 'LOW';
+            
+            // Si no es crítica, saltar esta alerta
+            if (!$isCritical) {
+                continue;
+            }
+            
+            // Marcar como crítica y forzar severidad baja para tráfico interno crítico
+            $alert['severity'] = 1;
+            $alert['is_internal'] = true;
+            $alert['is_critical'] = true;
         }
         
         // Ignorar alertas con poca severidad de IPs conocidas
         $knownIps = [
-            '8.8.8.8', // Google DNS
-            '8.8.4.4', // Google DNS
-            '1.1.1.1', // Cloudflare DNS
-            '1.0.0.1'  // Cloudflare DNS
+            '8.8.8.8',   // Google DNS
+            '8.8.4.4',   // Google DNS
+            '1.1.1.1',   // Cloudflare DNS
+            '1.0.0.1'    // Cloudflare DNS
         ];
         
         if (in_array($alert['source_ip'], $knownIps) && 
-            $alert['severity'] !== 'HIGH') {
-            return false;
+            ($alert['severity'] !== 'HIGH' && $alert['severity'] !== 3)) {
+            continue;
         }
         
-        return true;
-    });
+        $filteredAlerts[] = $alert;
+    }
 
     // Convertir timestamps a formato Unix
     foreach ($filteredAlerts as &$alert) {
